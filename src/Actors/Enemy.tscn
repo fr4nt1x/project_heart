@@ -169,8 +169,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 11.0
-height = 7.0
+height = 18.01
 
 [sub_resource type="CanvasItemMaterial" id=6]
 blend_mode = 1
@@ -181,7 +180,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 24
+collision_mask = 25
 script = ExtResource( 5 )
 speed = Vector2( 75, 250 )
 

@@ -30,7 +30,7 @@ func _ready():
 		camera.custom_viewport = viewport
 		yield(get_tree(), "idle_frame")
 		camera.make_current()
-
+	_starting_pos = self.position
 
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.
@@ -115,8 +115,8 @@ func calculate_move_velocity(
 		# as to not be too abrupt.
 		velocity.y *= 0.6
 	return velocity
-
-
+	
+	
 func get_new_animation(is_shooting = false):
 	var animation_new = ""
 	if is_on_floor():

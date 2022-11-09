@@ -89,8 +89,24 @@ func _physics_process(_delta):
 		if is_shooting:
 			shoot_timer.start()
 		animation_player.play(animation)
+		
+	check_collisions()
+				
+func check_collisions():
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.has_meta("type"):
+			for _child in get_node("../Enemies").get_children():
+				_child.resetPosition()
+			resetPlayer()
 
-
+func resetPlayer():
+	resetPosition()
+	get_tree().paused = true
+	Physics2DServer.set_active(true)
+	yield(get_tree().create_timer(0.25), "timeout")
+	get_tree().paused = false
+		
 func get_direction():
 	return Vector2(
 		Input.get_action_strength("move_right" + action_suffix) - Input.get_action_strength("move_left" + action_suffix),

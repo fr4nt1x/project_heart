@@ -18,6 +18,7 @@ onready var animation_player = $AnimationPlayer
 func _ready():
 	_velocity.x = speed.x
 	_starting_pos = self.position
+	self.set_meta("type","enemy")
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.
 
@@ -55,13 +56,8 @@ func _physics_process(_delta):
 	var animation = get_new_animation()
 	if animation != animation_player.current_animation:
 		animation_player.play(animation)
-		
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		if collision.collider.name == "Player":
-			collision.collider.reset()
-			reset()
 
+	
 func destroy():
 	_state = State.DEAD
 	_velocity = Vector2.ZERO

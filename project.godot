@@ -84,6 +84,10 @@ stretch/mode="2d"
 
 singletons=[  ]
 
+[global]
+
+viewport=false
+
 [image_loader]
 
 repeat=false
@@ -226,6 +230,7 @@ splitscreen={
 2d_physics/layer_4="platforms"
 2d_physics/layer_5="ground"
 2d_physics/layer_6="checkpoint"
+2d_physics/layer_7="death"
 
 [physics]
 

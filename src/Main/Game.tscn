@@ -13,9 +13,13 @@ script = ExtResource( 2 )
 position = Vector2( 14, 0 )
 
 [node name="Player" parent="Level" instance=ExtResource( 4 )]
-position = Vector2( 14, 544 )
+position = Vector2( -234, 406 )
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 layer = 100
 
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource( 1 )]
+margin_left = -154.0
+margin_top = -23.0
+margin_right = -154.0
+margin_bottom = -23.0

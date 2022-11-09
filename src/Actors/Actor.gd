@@ -18,7 +18,7 @@ var _velocity = Vector2.ZERO
 func _physics_process(delta):
 	_velocity.y += gravity * delta
 
-func reset():
+func resetPosition():
 	
 	self.position = _starting_pos
 	

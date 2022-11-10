@@ -4,7 +4,8 @@ extends Actor
 
 enum State {
 	WALKING,
-	DEAD,
+	FEASTING,
+	
 }
 
 var _state = State.WALKING
@@ -56,11 +57,28 @@ func _physics_process(_delta):
 	var animation = get_new_animation()
 	if animation != animation_player.current_animation:
 		animation_player.play(animation)
+		
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.name == "Player":
+			for _child in get_node("..").get_children():
+				_child.reset()
+			collision.collider.resetPlayer()
+			
+func reset():
+	self.stop_feasting()
+	self.resetPosition()
 
 	
-func destroy():
-	_state = State.DEAD
+func start_feasting():
+	_state = State.FEASTING
 	_velocity = Vector2.ZERO
+	self.set_collision_mask_bit(0,false)
+	
+func stop_feasting():
+	_state = State.WALKING
+	_velocity.x = speed.x
+	self.set_collision_mask_bit(0,true) #bit starts at zero
 	
 func get_new_animation():
 	var animation_new = ""
@@ -69,6 +87,6 @@ func get_new_animation():
 			animation_new = "idle"
 		else:
 			animation_new = "walk"
-	else:
-		animation_new = "destroy"
+	elif _state == State.FEASTING:
+		animation_new = "idle"
 	return animation_new

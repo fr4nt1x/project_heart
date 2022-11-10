@@ -97,7 +97,7 @@ func check_collisions():
 		var collision = get_slide_collision(i)
 		if collision.collider.has_meta("type"):
 			for _child in get_node("../Enemies").get_children():
-				_child.resetPosition()
+				_child.reset()
 			resetPlayer()
 
 func resetPlayer():

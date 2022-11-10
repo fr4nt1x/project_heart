@@ -4,7 +4,8 @@ extends Position2D
 # The Cooldown timer controls the cooldown duration between shots.
 
 
-const BULLET_VELOCITY = 500.0
+const BULLET_VELOCITY_X = 200.0
+const BULLET_VELOCITY_Y = -200.0
 const Bullet = preload("res://src/Objects/Bullet.tscn")
 
 onready var sound_shoot = $Shoot
@@ -17,8 +18,8 @@ func shoot(direction = 1):
 		return false
 	var bullet = Bullet.instance()
 	bullet.global_position = global_position
-	bullet.linear_velocity = Vector2(direction * BULLET_VELOCITY, 0)
-
+	bullet.linear_velocity = Vector2(direction * BULLET_VELOCITY_X, BULLET_VELOCITY_Y)
+	
 	bullet.set_as_toplevel(true)
 	add_child(bullet)
 	sound_shoot.play()

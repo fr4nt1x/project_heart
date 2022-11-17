@@ -16,10 +16,12 @@ func destroy():
 
 func _physics_process(_delta):
 	if ground_detector.is_colliding():
-		self.mode=MODE_STATIC
-		self.sleeping = true
-		ground_detector.enabled = false
-		triggerCollision.disabled = false
+		var normal = ground_detector.get_collision_normal()
+		if normal.is_equal_approx(Vector2(0,-1)): 
+			self.mode=MODE_STATIC
+			self.sleeping = true
+			ground_detector.enabled = false
+			triggerCollision.disabled = false
 
 
 func _on_Area2D_body_entered(body):

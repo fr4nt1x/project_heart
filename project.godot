@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Objects/Bullet.gd"
 }, {
-"base": "Area2D",
-"class": "Coin",
-"language": "GDScript",
-"path": "res://src/Objects/Coin.gd"
-}, {
 "base": "Actor",
 "class": "Enemy",
 "language": "GDScript",
@@ -38,14 +33,19 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/Actors/Player.gd"
+}, {
+"base": "Area2D",
+"class": "Steak",
+"language": "GDScript",
+"path": "res://src/Objects/Steak.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
 "Bullet": "",
-"Coin": "",
 "Enemy": "",
 "Gun": "",
-"Player": ""
+"Player": "",
+"Steak": ""
 }
 
 [application]

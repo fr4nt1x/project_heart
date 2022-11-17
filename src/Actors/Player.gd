@@ -2,11 +2,8 @@ class_name Player
 extends Actor
 
 
-# warning-ignore:unused_signal
-signal collect_coin()
-
 const FLOOR_DETECT_DISTANCE = 20.0
-
+signal reset_player()
 export(String) var action_suffix = ""
 
 onready var platform_detector = $PlatformDetector
@@ -15,7 +12,8 @@ onready var shoot_timer = $ShootAnimation
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 onready var gun = sprite.get_node(@"Gun")
-
+onready var player_has_steak = false
+onready var speechLabel = $SpeechLabel
 
 func _ready():
 	# Static types are necessary here to avoid warnings.
@@ -30,6 +28,7 @@ func _ready():
 		camera.custom_viewport = viewport
 		yield(get_tree(), "idle_frame")
 		camera.make_current()
+
 	_starting_pos = self.position
 
 # Physics process is a built-in loop in Godot.
@@ -81,7 +80,7 @@ func _physics_process(_delta):
 	# There are many situations like these where you can reuse existing properties instead of
 	# creating new variables.
 	var is_shooting = false
-	if Input.is_action_just_pressed("shoot" + action_suffix):
+	if player_has_steak and Input.is_action_just_pressed("shoot" + action_suffix):
 		is_shooting = gun.shoot(sprite.scale.x)
 
 	var animation = get_new_animation(is_shooting)
@@ -96,11 +95,10 @@ func check_collisions():
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.has_meta("type"):
-			for _child in get_node("../Enemies").get_children():
-				_child.reset()
 			resetPlayer()
 
 func resetPlayer():
+	self.emit_signal("reset_player")
 	resetPosition()
 	get_tree().paused = true
 	Physics2DServer.set_active(true)
@@ -132,7 +130,9 @@ func calculate_move_velocity(
 		velocity.y *= 0.6
 	return velocity
 	
-	
+func give_steak_to_player():
+	player_has_steak = true
+		
 func get_new_animation(is_shooting = false):
 	var animation_new = ""
 	if is_on_floor():
@@ -148,3 +148,12 @@ func get_new_animation(is_shooting = false):
 	if is_shooting:
 		animation_new += "_weapon"
 	return animation_new
+
+
+func speak(input):
+	speechLabel.clear()
+	for line in input:
+		print(line)
+		speechLabel.bbcode_text = line
+		yield(get_tree().create_timer(2), "timeout")
+	speechLabel.clear()

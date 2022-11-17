@@ -15,8 +15,6 @@ func _ready():
 	else:
 		print("Checkpoint didnt find ground! Check level.")	
 	groundDetector.enabled = false
-	print(ground_position)
-	print(self.position)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

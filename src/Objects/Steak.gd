@@ -1,4 +1,4 @@
-class_name Coin
+class_name Steak
 extends Area2D
 # Collectible that disappears when the player touches it.
 
@@ -11,6 +11,8 @@ onready var animation_player = $AnimationPlayer
 # The animation takes cares of making the coin disappear, but also deactivates its
 # collisions and frees it from memory, saving us from writing more complex code.
 # Click the AnimationPlayer node to see the animation timeline.
-func _on_body_entered(_body):
+func _on_body_entered(player):
 	animation_player.play("picked")
-	_body.emit_signal("collect_coin")
+	player.give_steak_to_player()
+	player.speak(["Ohh a steak.", "Maybe I can tame the lions with it."])
+	

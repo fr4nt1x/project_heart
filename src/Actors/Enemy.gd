@@ -19,7 +19,10 @@ onready var animation_player = $AnimationPlayer
 func _ready():
 	_velocity.x = speed.x
 	_starting_pos = self.position
+	var _player_node = get_node("../../Player")
+	_player_node.connect("reset_player",self,"reset")
 	self.set_meta("type","enemy")
+	
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.
 
@@ -61,10 +64,7 @@ func _physics_process(_delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.name == "Player":
-			for _child in get_node("..").get_children():
-				_child.reset()
 			collision.collider.resetPlayer()
-			
 func reset():
 	self.stop_feasting()
 	self.resetPosition()

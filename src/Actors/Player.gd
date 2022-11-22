@@ -1,11 +1,19 @@
 class_name Player
 extends Actor
 
+enum State {
+	WALKING,
+	SHOOTING,
+	JUMPING,
+	RESETTING
+}
 
 const FLOOR_DETECT_DISTANCE = 20.0
+
 signal reset_player()
 export(String) var action_suffix = ""
 
+onready var _state=State.WALKING
 onready var platform_detector = $PlatformDetector
 onready var animation_player = $AnimationPlayer
 onready var shoot_timer = $ShootAnimation
@@ -98,12 +106,17 @@ func check_collisions():
 			resetPlayer()
 
 func resetPlayer():
+	if _state == State.RESETTING:
+		return
+	_state = State.RESETTING
 	self.emit_signal("reset_player")
 	resetPosition()
 	get_tree().paused = true
 	Physics2DServer.set_active(true)
-	yield(get_tree().create_timer(0.25), "timeout")
+	yield(get_tree().create_timer(0.35), "timeout")
+	_state = State.WALKING
 	get_tree().paused = false
+	
 		
 func get_direction():
 	return Vector2(
@@ -153,7 +166,6 @@ func get_new_animation(is_shooting = false):
 func speak(input):
 	speechLabel.clear()
 	for line in input:
-		print(line)
 		speechLabel.bbcode_text = line
 		yield(get_tree().create_timer(2), "timeout")
 	speechLabel.clear()

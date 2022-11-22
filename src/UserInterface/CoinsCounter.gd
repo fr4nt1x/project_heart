@@ -10,7 +10,7 @@ func _ready():
 	# Static types are necessary here to avoid warnings.
 	var anim_sprite: AnimatedSprite = $AnimatedSprite
 	anim_sprite.play()
-	var _player_path = get_node(@"../../../../Level/Player")
+	var _player_path = get_node("/root/Game/Level/Player")
 	_player_path.connect("reset_player", self, "_add_reset")
 
 

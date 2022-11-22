@@ -3,7 +3,7 @@
 [ext_resource path="res://src/Areas/DeathArea.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 207.5, 48.5 )
+extents = Vector2( 272, 39.25 )
 
 [node name="Area2D" type="Area2D"]
 collision_layer = 64

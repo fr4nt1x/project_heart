@@ -60,8 +60,8 @@ radius = 15.0
 
 [node name="Bullet" type="RigidBody2D"]
 material = SubResource( 1 )
-collision_layer = 0
-collision_mask = 16
+collision_layer = 128
+collision_mask = 18
 continuous_cd = 2
 contact_monitor = true
 script = ExtResource( 2 )
@@ -97,7 +97,7 @@ anims/destroy = SubResource( 5 )
 [node name="GroundDetector" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 5 )
-collision_mask = 16
+collision_mask = 18
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

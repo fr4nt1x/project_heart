@@ -1,0 +1,148 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Actors/Crocodile.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/enemy/crocodile.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=2]
+resource_name = "destroy"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 0.0796601, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:collision_layer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 2.2974, 0.183011, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -32 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 6.75
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25, 6, 6.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 5, 6, 5, 6, 7, 6, 7, 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 1.25
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1, 1.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 35.5 )
+
+[node name="Crocodile" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+speed = Vector2( 75, 250 )
+
+[node name="WallDetectorLeft" type="RayCast2D" parent="."]
+position = Vector2( -37, 7 )
+enabled = true
+cast_to = Vector2( -10, 0 )
+collision_mask = 24
+
+[node name="WallDetectorRight" type="RayCast2D" parent="."]
+position = Vector2( 36, 7 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+collision_mask = 24
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/destroy = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/walk = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource( 5 )

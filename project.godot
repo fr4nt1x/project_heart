@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://src/Objects/Bullet.gd"
 }, {
 "base": "Actor",
+"class": "Crocodile",
+"language": "GDScript",
+"path": "res://src/Actors/Crocodile.gd"
+}, {
+"base": "Actor",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://src/Actors/Enemy.gd"
@@ -28,6 +33,11 @@ _global_script_classes=[ {
 "class": "Gun",
 "language": "GDScript",
 "path": "res://src/Actors/Gun.gd"
+}, {
+"base": "Actor",
+"class": "Lion",
+"language": "GDScript",
+"path": "res://src/Actors/Lion.gd"
 }, {
 "base": "Actor",
 "class": "Player",
@@ -42,8 +52,10 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Actor": "",
 "Bullet": "",
+"Crocodile": "",
 "Enemy": "",
 "Gun": "",
+"Lion": "",
 "Player": "",
 "Steak": ""
 }
@@ -231,6 +243,7 @@ splitscreen={
 2d_physics/layer_5="ground"
 2d_physics/layer_6="checkpoint"
 2d_physics/layer_7="death"
+2d_physics/layer_8="projectile"
 
 [physics]
 

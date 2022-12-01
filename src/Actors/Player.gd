@@ -20,7 +20,7 @@ onready var shoot_timer = $ShootAnimation
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 onready var gun = sprite.get_node(@"Gun")
-onready var player_has_steak = false
+onready var player_has_steak = true
 onready var speechLabel = $SpeechLabel
 
 func _ready():
@@ -102,7 +102,7 @@ func _physics_process(_delta):
 func check_collisions():
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.has_meta("type"):
+		if collision.collider.has_meta("type") and not collision.collider.is_feasting():
 			resetPlayer()
 
 func resetPlayer():

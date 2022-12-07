@@ -20,7 +20,7 @@ onready var shoot_timer = $ShootAnimation
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 onready var gun = sprite.get_node(@"Gun")
-onready var player_has_steak = true
+onready var player_has_steak = false
 onready var speechLabel = $SpeechLabel
 
 func _ready():

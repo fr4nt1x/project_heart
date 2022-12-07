@@ -12,7 +12,7 @@ onready var animation_player = $AnimationPlayer
 # collisions and frees it from memory, saving us from writing more complex code.
 # Click the AnimationPlayer node to see the animation timeline.
 func _on_body_entered(player):
-	animation_player.play("picked")
+	animation_player.play("destroy")
 	player.give_steak_to_player()
 	player.speak(["Ohh a steak.", "Maybe I can tame the lions with it."])
 	

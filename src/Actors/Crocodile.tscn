@@ -136,14 +136,9 @@ cast_to = Vector2( 10, 0 )
 collision_mask = 24
 
 [node name="Sprite" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0.750042 )
-rotation = 3.14159
 texture = ExtResource( 2 )
-flip_h = true
-flip_v = true
 hframes = 2
 vframes = 4
-frame = 4
 region_rect = Rect2( 0, 0, 300, 30 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

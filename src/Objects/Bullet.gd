@@ -7,6 +7,7 @@ onready var ground_detector = $GroundDetector
 onready var physicsCollision = $PhysicsCollision
 onready var triggerCollision = $Area2D.get_child(0)
 onready var timer = $Timer
+const feasting_time = 5
 
 func _ready():
 	triggerCollision.disabled=true
@@ -28,7 +29,12 @@ func set_steak_landed():
 	
 func _on_Area2D_body_entered(body):
 	if body.has_meta("type") and body.get_meta("type") == "enemy":
-		body.start_feasting()
-		yield(get_tree().create_timer(timer.get_time_left()), "timeout")
-		body.stop_feasting()
+		set_deferred("triggerCollision.disabled",true)
+		body.start_feasting(feasting_time)
+		timer.stop()
+		if animation_player.current_animation != "feasted_on":
+			animation_player.play("feasted_on")
+			yield(get_tree().create_timer(feasting_time), "timeout")
+			self.queue_free()
+		
 

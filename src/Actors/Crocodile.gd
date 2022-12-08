@@ -66,8 +66,10 @@ func reset():
 	self.resetPosition()
 
 	
-func start_feasting():
+func start_feasting(duration):
 	_state = State.FEASTING
+	yield(get_tree().create_timer(duration), "timeout")
+	stop_feasting()
 	
 func stop_feasting():
 	_state = State.WALKING

@@ -70,10 +70,12 @@ func reset():
 	self.resetPosition()
 
 	
-func start_feasting():
+func start_feasting(duration):
 	_state = State.FEASTING
 	_velocity = Vector2.ZERO
 	self.set_collision_mask_bit(0,false)
+	yield(get_tree().create_timer(duration), "timeout")
+	stop_feasting()
 	
 func stop_feasting():
 	_state = State.WALKING

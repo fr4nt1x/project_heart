@@ -14,7 +14,7 @@ script = ExtResource( 2 )
 position = Vector2( 14, 0 )
 
 [node name="Player" parent="Level" instance=ExtResource( 4 )]
-position = Vector2( 3514, 753 )
+position = Vector2( 2166, 738 )
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 layer = 100

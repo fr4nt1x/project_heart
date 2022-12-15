@@ -165,7 +165,10 @@ func get_new_animation(is_shooting = false):
 
 func speak(input):
 	speechLabel.clear()
+	get_tree().paused = true
+	
 	for line in input:
 		speechLabel.bbcode_text = line
 		yield(get_tree().create_timer(2), "timeout")
 	speechLabel.clear()
+	get_tree().paused = false

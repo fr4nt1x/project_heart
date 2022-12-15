@@ -25,3 +25,5 @@ func _ready():
 func _on_checkpoint_body_entered(body):
 	if body.name == "Player":
 		body.set_checkpoint(ground_position)
+		if self.name == "CheckpointCroco":
+			body.speak(["I wonder if crocodiles also like steak?"])

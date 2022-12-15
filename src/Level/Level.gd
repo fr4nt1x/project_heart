@@ -2,7 +2,7 @@ extends Node2D
 
 const LIMIT_LEFT = -3000
 const LIMIT_TOP = -800
-const LIMIT_RIGHT = 4000
+const LIMIT_RIGHT = 8000
 const LIMIT_BOTTOM = 2000
 
 func _ready():

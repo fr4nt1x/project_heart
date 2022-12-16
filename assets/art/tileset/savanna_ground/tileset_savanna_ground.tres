@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=68 format=2]
+[gd_resource type="TileSet" load_steps=69 format=2]
 
 [ext_resource path="res://assets/art/tileset/savanna_ground/tileset_savanna_ground.png" type="Texture" id=1]
 [ext_resource path="res://assets/art/tileset/savanna_ground/savanna_spikes.png" type="Texture" id=2]
@@ -194,6 +194,9 @@ points = PoolVector2Array( 0, 4, 32, 4, 32, 32, 0, 32 )
 
 [sub_resource type="ConvexPolygonShape2D" id=67]
 points = PoolVector2Array( 32, 36, 0, 36, 32, 4 )
+
+[sub_resource type="ConvexPolygonShape2D" id=68]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [sub_resource type="GDScript" id=48]
 script/source = "tool
@@ -636,6 +639,12 @@ func _is_tile_bound(_drawn_id: int, neighbor_id: int) -> bool:
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 67 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 68 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0

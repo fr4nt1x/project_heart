@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/music.ogg-4f126293946cd2638b4f59a46e13a15c.oggstr"
+
+[deps]
+
+source_file="res://assets/level_africa/art/audio/music/music.ogg"
+dest_files=[ "res://.import/music.ogg-4f126293946cd2638b4f59a46e13a15c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

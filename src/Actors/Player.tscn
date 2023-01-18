@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/player/robot_demo.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/art/ui/touch_button_jump.png" type="Texture" id=7]
 [ext_resource path="res://assets/art/ui/touch_button_fire.png" type="Texture" id=8]
 [ext_resource path="res://src/Actors/Gun.gd" type="Script" id=9]
+[ext_resource path="res://assets/art/player/indy.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "crouch"
@@ -135,7 +136,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=8]
 length = 1.25
 loop = true
-step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -147,6 +147,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -201,11 +213,12 @@ cast_to = Vector2( 0, 6 )
 collision_mask = 8
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, -14 )
 texture = ExtResource( 2 )
 hframes = 16
 vframes = 2
-frame = 22
+frame = 3
 
 [node name="Gun" type="Position2D" parent="Sprite"]
 position = Vector2( 14, 1 )
@@ -289,3 +302,10 @@ bbcode_enabled = true
 meta_underlined = false
 scroll_active = false
 deselect_on_focus_loss_enabled = false
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( -3, -16 )
+texture = ExtResource( 10 )
+hframes = 2
+vframes = 2
+frame = 2

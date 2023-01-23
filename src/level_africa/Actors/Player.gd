@@ -1,4 +1,4 @@
-class_name Player
+class_name PlayerAfrica
 extends Actor
 
 enum State {
@@ -140,9 +140,10 @@ func get_new_animation(is_shooting = false):
 		else:
 			animation_new = "idle"
 	else:
-		if _velocity.y > 0:
+		if _velocity.y > 0 or animation_player.current_animation == "falling":
 			animation_new = "falling"
 		else:
+			animation_player.animation_set_next("jumping","falling")
 			animation_new = "jumping"
 	if is_shooting:
 		animation_new += "_weapon"

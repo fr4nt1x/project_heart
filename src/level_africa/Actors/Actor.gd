@@ -1,4 +1,4 @@
-class_name Actor
+class_name ActorAfrica
 extends KinematicBody2D
 
 # Both the Player and Enemy inherit this scene as they have shared behaviours

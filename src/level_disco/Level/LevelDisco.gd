@@ -7,7 +7,7 @@ const LIMIT_BOTTOM = 2000
 
 func _ready():
 	for child in get_children():
-		if child is PlayerAfrica:
+		if child is PlayerDisco:
 			var camera = child.get_node("Camera")
 			camera.limit_left = LIMIT_LEFT
 			camera.limit_top = LIMIT_TOP

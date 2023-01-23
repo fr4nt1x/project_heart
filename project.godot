@@ -10,21 +10,21 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
-"class": "Actor",
-"language": "GDScript",
-"path": "res://src/level_disco/Actors/Actor.gd"
-}, {
-"base": "KinematicBody2D",
 "class": "ActorAfrica",
 "language": "GDScript",
 "path": "res://src/level_africa/Actors/Actor.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "ActorDisco",
+"language": "GDScript",
+"path": "res://src/level_disco/Actors/ActorDisco.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Bullet",
 "language": "GDScript",
 "path": "res://src/level_africa/Objects/Bullet.gd"
 }, {
-"base": "Actor",
+"base": "ActorAfrica",
 "class": "Crocodile",
 "language": "GDScript",
 "path": "res://src/level_africa/Actors/Crocodile.gd"
@@ -39,20 +39,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/level_africa/Actors/Gun.gd"
 }, {
-"base": "Actor",
+"base": "ActorAfrica",
 "class": "Lion",
 "language": "GDScript",
 "path": "res://src/level_africa/Actors/Lion.gd"
 }, {
-"base": "Actor",
-"class": "Player",
-"language": "GDScript",
-"path": "res://src/level_disco/Actors/Player.gd"
-}, {
-"base": "Actor",
+"base": "ActorDisco",
 "class": "PlayerAfrica",
 "language": "GDScript",
-"path": "res://src/level_africa/Actors/Player.gd"
+"path": "res://src/level_africa/Actors/PlayerAfrica.gd"
+}, {
+"base": "ActorDisco",
+"class": "PlayerDisco",
+"language": "GDScript",
+"path": "res://src/level_disco/Actors/PlayerDisco.gd"
 }, {
 "base": "Area2D",
 "class": "Steak",
@@ -60,15 +60,15 @@ _global_script_classes=[ {
 "path": "res://src/level_africa/Objects/Steak.gd"
 } ]
 _global_script_class_icons={
-"Actor": "",
 "ActorAfrica": "",
+"ActorDisco": "",
 "Bullet": "",
 "Crocodile": "",
 "Enemy": "",
 "Gun": "",
 "Lion": "",
-"Player": "",
 "PlayerAfrica": "",
+"PlayerDisco": "",
 "Steak": ""
 }
 

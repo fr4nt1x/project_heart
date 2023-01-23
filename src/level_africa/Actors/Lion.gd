@@ -1,6 +1,6 @@
 class_name Lion
 
-extends Actor
+extends ActorAfrica
 
 
 enum State {

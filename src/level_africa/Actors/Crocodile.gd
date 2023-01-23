@@ -1,6 +1,6 @@
 class_name Crocodile
 
-extends Actor
+extends ActorAfrica
 
 
 enum State {

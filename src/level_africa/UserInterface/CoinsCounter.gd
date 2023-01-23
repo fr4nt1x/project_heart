@@ -13,7 +13,8 @@ func _ready():
 
 
 func connect_player():
-	var _player_path = get_node("/root/Game/Africa/Level/Player")
+	#TODO make dynamic based on level choice
+	var _player_path = get_node("/root/Game/Disco/Player")
 	_player_path.connect("reset_player", self, "_add_reset")
 	
 func _add_reset():

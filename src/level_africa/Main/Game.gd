@@ -11,7 +11,7 @@ onready var _death_counter = $InterfaceLayer/CoinsCounter
 func _init():
 	OS.min_window_size = OS.window_size
 	OS.max_window_size = OS.get_screen_size()
-	var level_resource = load("res://src/level_africa/Level/Africa.tscn")
+	var level_resource = load("res://src/level_disco/Level/Disco.tscn")
 	var level_instance = level_resource.instance()
 	self.add_child(level_instance)
 

@@ -3,23 +3,21 @@ extends ActorDisco
 
 enum State {
 	WALKING,
-	SHOOTING,
+	DASHING,
 	JUMPING,
-	RESETTING
 }
 
 const FLOOR_DETECT_DISTANCE = 20.0
 
-signal reset_player()
-
 onready var _state=State.WALKING
 onready var platform_detector = $PlatformDetector
 onready var animation_player = $AnimationPlayer
-onready var shoot_timer = $ShootAnimation
+onready var dash_cooldown = $DashCooldown
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 onready var player_has_steak = false
 onready var speechLabel = $SpeechLabel
+const dash_duration = 0.1
 
 func _ready():
 	_starting_pos = self.position
@@ -46,9 +44,9 @@ func _physics_process(_delta):
 	# Play jump sound
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		sound_jump.play()
-
+	if Input.is_action_just_pressed("shoot") and dash_cooldown.is_stopped():
+		call_deferred("start_dashing")
 	var direction = get_direction()
-
 	var is_jump_interrupted = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 
@@ -73,34 +71,15 @@ func _physics_process(_delta):
 	# There are many situations like these where you can reuse existing properties instead of
 	# creating new variables.
 	var is_shooting = false
-
 	var animation = get_new_animation(is_shooting)
-	if animation != animation_player.current_animation and shoot_timer.is_stopped():
-		if is_shooting:
-			shoot_timer.start()
+	if animation != animation_player.current_animation:
 		animation_player.play(animation)
-		
-	check_collisions()
-				
-func check_collisions():
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		if collision.collider.has_meta("type") and not collision.collider.is_feasting():
-			resetPlayer()
-
-func resetPlayer():
-	if _state == State.RESETTING:
-		return
-	_state = State.RESETTING
-	self.emit_signal("reset_player")
-	resetPosition()
-	get_tree().paused = true
-	Physics2DServer.set_active(true)
-	yield(get_tree().create_timer(0.35), "timeout")
-	_state = State.WALKING
-	get_tree().paused = false
 	
-		
+func start_dashing():
+	dash_cooldown.start()
+	_state = State.DASHING
+	yield(get_tree().create_timer(dash_duration), "timeout")
+	_state = State.WALKING	
 func get_direction():
 	return Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
@@ -117,8 +96,11 @@ func calculate_move_velocity(
 		is_jump_interrupted
 	):
 	var velocity = linear_velocity
+		
 	velocity.x = speed.x * direction.x
-	if direction.y != 0.0:
+	if _state == State.DASHING:
+		velocity.x = 10*velocity.x
+	elif direction.y != 0.0:
 		velocity.y = speed.y * direction.y
 	if is_jump_interrupted:
 		# Decrease the Y velocity by multiplying it, but don't set it to 0

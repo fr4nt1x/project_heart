@@ -1,5 +1,5 @@
 class_name PlayerAfrica
-extends ActorDisco
+extends ActorAfrica
 
 enum State {
 	WALKING,

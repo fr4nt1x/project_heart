@@ -5,6 +5,8 @@ func enter(_msg := {}) -> void:
 	player.play_animation("fall")
 	if not player.is_note_in_goal():	
 		player.dash_cooldown.start()
+	else:
+		player.perfect_hit()
 	call_deferred("stop_dashing")
 	
 func physics_update(_delta: float) -> void:
@@ -16,9 +18,9 @@ func physics_update(_delta: float) -> void:
 func stop_dashing():
 	yield(get_tree().create_timer(_dash_duration), "timeout")
 	
-	if Input.is_action_just_pressed("jump") and player.jump_cooldown.is_stopped():
+	if Input.is_action_just_pressed("jump") and player.can_jump():
 		state_machine.transition_to("Air", {do_jump = true})
-	elif Input.is_action_just_pressed("shoot") and player.dash_cooldown.is_stopped():
+	elif Input.is_action_just_pressed("shoot") and player.can_dash():
 		state_machine.transition_to("Dash",{})
 	elif player.is_on_floor():
 		if is_equal_approx(player.velocity.x, 0.0):

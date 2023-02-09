@@ -6,6 +6,8 @@ func enter(msg := {}) -> void:
 	if msg.has("do_jump"):
 		if not player.is_note_in_goal():	
 			player.jump_cooldown.start()
+		else:
+			player.perfect_hit()
 		player.velocity.y = -player.jump_impulse
 		is_jumping = true
 		player.play_animation("jump")
@@ -32,9 +34,9 @@ func physics_update(delta: float) -> void:
 			player.set_sprite_scale_x( 1)
 		else:
 			player.set_sprite_scale_x(-1)
-	if Input.is_action_just_pressed("jump") and player.jump_cooldown.is_stopped():
+	if Input.is_action_just_pressed("jump") and player.can_jump():
 		state_machine.transition_to("Air", {do_jump = true})	
-	elif Input.is_action_just_pressed("shoot") and player.dash_cooldown.is_stopped():
+	elif Input.is_action_just_pressed("shoot") and player.can_dash():
 		state_machine.transition_to("Dash",{})		
 	elif player.is_on_floor():
 		if is_equal_approx(player.velocity.x, 0.0):

@@ -4,6 +4,7 @@ extends PlayerState
 func enter(_msg := {}) -> void:
 	player.velocity = Vector2.ZERO
 	player.play_animation("idle")
+	player.jump_cooldown.stop()
 
 
 func physics_update(_delta: float) -> void:
@@ -11,7 +12,7 @@ func physics_update(_delta: float) -> void:
 		state_machine.transition_to("Air")
 		return
 
-	if Input.is_action_just_pressed("jump") and player.jump_cooldown.is_stopped():
+	if Input.is_action_just_pressed("jump") and player.can_jump():
 		state_machine.transition_to("Air", {do_jump = true})
 	elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		state_machine.transition_to("Run")

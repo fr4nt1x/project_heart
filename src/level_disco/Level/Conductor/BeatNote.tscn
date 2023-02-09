@@ -4,7 +4,7 @@
 [ext_resource path="res://src/level_disco/Level/Conductor/BeatNote.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 16, 32 )
 
 [node name="BeatNote" type="Area2D"]
 collision_layer = 2
@@ -13,6 +13,8 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.694118, 0.152941, 0.152941, 1 )
+position = Vector2( 4.76837e-07, 0 )
+scale = Vector2( 0.5, 1 )
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 70, 70 )
 

@@ -6,6 +6,7 @@ extends Node2D
 # var b = "text"
 const BeatNote = preload("res://src/level_disco/Level/Conductor/BeatNote.tscn")
 onready var noteTimer = $NoteTimer
+onready var label = $Label
 
 var note_inside_goal = false;
 # Called when the node enters the scene tree for the first time.
@@ -27,3 +28,12 @@ func _on_GoalBox_area_exited(area):
 
 func _on_NoteTimer_timeout():
 	spawn_note() # Replace with function body.
+
+func reset_label(time):
+	yield(get_tree().create_timer(time), "timeout")
+	label.set_text("")
+	
+func perfect_hit():
+	label.set_text("Perfect!")
+	call_deferred("reset_label",0.6)
+	

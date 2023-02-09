@@ -43,3 +43,17 @@ func play_animation(animation):
 
 func is_note_in_goal():
 	return conductor.note_inside_goal
+	
+func can_dash():
+	return dash_cooldown.is_stopped()
+	
+func can_jump():
+	return jump_cooldown.is_stopped()
+
+func stop_cooldowns():
+	jump_cooldown.stop()
+	dash_cooldown.stop()
+	
+func perfect_hit():
+	stop_cooldowns()
+	conductor.perfect_hit()

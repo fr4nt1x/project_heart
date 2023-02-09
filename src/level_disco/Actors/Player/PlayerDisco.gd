@@ -9,7 +9,9 @@ enum State {
 
 onready var platform_detector = $PlatformDetector
 onready var animation_player = $AnimationPlayer
+onready var conductor = $Conductor
 onready var dash_cooldown = $DashCooldown
+onready var jump_cooldown = $JumpCooldown
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 const dash_duration = 0.1
@@ -20,7 +22,7 @@ export var speed := 150.0
 export var gravity := 50
 
 # Vertical speed applied when jumping.
-export var jump_impulse := 350.0
+export var jump_impulse := 450.0
 
 export var velocity: Vector2
 
@@ -38,3 +40,6 @@ func set_sprite_scale_x(scale:float):
 
 func play_animation(animation):
 	animation_player.play(animation)
+
+func is_note_in_goal():
+	return conductor.note_inside_goal

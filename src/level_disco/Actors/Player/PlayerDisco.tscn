@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/level_disco/Actors/Player/State/Idle.gd" type="Script" id=1]
 [ext_resource path="res://src/common/StateMachine/StateMachine.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/level_disco/Actors/Player/PlayerDisco.gd" type="Script" id=6]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Air.gd" type="Script" id=7]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Dash.gd" type="Script" id=8]
+[ext_resource path="res://src/level_disco/Level/Conductor/Conductor.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fall"
@@ -91,6 +92,11 @@ process_mode = 0
 wait_time = 2.0
 one_shot = true
 
+[node name="JumpCooldown" type="Timer" parent="."]
+process_mode = 0
+wait_time = 2.0
+one_shot = true
+
 [node name="PlatformDetector" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 6 )
@@ -104,6 +110,7 @@ anims/jump = SubResource( 4 )
 anims/run = SubResource( 3 )
 
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 1, 0 )
 current = true
 zoom = Vector2( 0.7, 0.7 )
 process_mode = 0
@@ -132,6 +139,7 @@ position = Vector2( -3, -16 )
 texture = ExtResource( 5 )
 hframes = 3
 vframes = 4
+frame = 10
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -148,3 +156,6 @@ script = ExtResource( 7 )
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+
+[node name="Conductor" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, -128 )

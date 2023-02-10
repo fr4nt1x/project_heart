@@ -81,7 +81,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 13.5, 33 )
+extents = Vector2( 10, 33 )
 
 [node name="PlayerDisco" type="KinematicBody2D"]
 collision_mask = 28
@@ -116,7 +116,7 @@ zoom = Vector2( 0.7, 0.7 )
 process_mode = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -3.5, -12 )
+position = Vector2( 0, -16 )
 shape = SubResource( 11 )
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="."]
@@ -135,11 +135,11 @@ scroll_active = false
 deselect_on_focus_loss_enabled = false
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -3, -16 )
+position = Vector2( 0, -16 )
 texture = ExtResource( 5 )
 hframes = 3
 vframes = 4
-frame = 10
+frame = 4
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )

@@ -84,6 +84,7 @@ tracks/0/keys = {
 extents = Vector2( 10, 33 )
 
 [node name="PlayerDisco" type="KinematicBody2D"]
+z_index = 1
 collision_mask = 28
 script = ExtResource( 6 )
 

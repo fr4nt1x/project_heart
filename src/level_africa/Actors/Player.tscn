@@ -165,7 +165,7 @@ position = Vector2( 0, -32 )
 texture = ExtResource( 10 )
 hframes = 3
 vframes = 4
-frame = 10
+frame = 4
 
 [node name="Gun" type="Position2D" parent="Sprite"]
 position = Vector2( 17, 3 )

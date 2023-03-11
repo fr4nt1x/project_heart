@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tent.png-d291be9e01c4fcc10c94e4ad8032eb58.stex"
+path="res://.import/tent.png-b5953ad9f3bfe906aa29d965b0edfa32.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/level_africa/art/player/tent.png"
-dest_files=[ "res://.import/tent.png-d291be9e01c4fcc10c94e4ad8032eb58.stex" ]
+source_file="res://assets/level_africa/art/level/tent.png"
+dest_files=[ "res://.import/tent.png-b5953ad9f3bfe906aa29d965b0edfa32.stex" ]
 
 [params]
 

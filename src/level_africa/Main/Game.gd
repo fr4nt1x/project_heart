@@ -9,7 +9,7 @@ onready var _pause_menu = $InterfaceLayer/PauseMenu
 onready var _death_counter = $InterfaceLayer/CoinsCounter
 var levels = [ "res://src/level_africa/Level/Africa.tscn","res://src/level_disco/Level/Disco.tscn"]
 var players = [ "/root/Game/Africa/Level/Player","/root/Game/Disco/Player"]
-var level_counter = 1 # should be 0, but can be incremented for debuuging
+var level_counter = 0 # should be 0, but can be incremented for debuuging
 var current_level_instance
 
 func _init():
@@ -29,8 +29,10 @@ func _notification(what):
 			$Black/SplitContainer/ViewportContainer1.free()
 			$Black.queue_free()
 
+
 func next_level():
-	current_level_instance.queue_free()
+	self.remove_child(current_level_instance)
+	current_level_instance.call_deferred("free")
 	level_counter=level_counter+1
 	var level_resource = load(levels[level_counter])
 	current_level_instance  = level_resource.instance()

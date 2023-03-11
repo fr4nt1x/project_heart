@@ -12,9 +12,8 @@ func _ready():
 	anim_sprite.play()
 
 
-func connect_player():
+func connect_player(player_string):
 	#TODO make dynamic based on level choice
-	var player_string = "/root/Game/Disco/Player"
 	var _player_path = get_node(player_string)
 	if "Africa" in player_string:
 		_player_path.connect("reset_player", self, "_add_reset")

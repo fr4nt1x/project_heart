@@ -7,16 +7,20 @@ extends Node
 # that is to say, another node or script should not access them.
 onready var _pause_menu = $InterfaceLayer/PauseMenu
 onready var _death_counter = $InterfaceLayer/CoinsCounter
+var levels = [ "res://src/level_africa/Level/Africa.tscn","res://src/level_disco/Level/Disco.tscn"]
+var players = [ "/root/Game/Africa/Level/Player","/root/Game/Disco/Player"]
+var level_counter = 1 # should be 0, but can be incremented for debuuging
+var current_level_instance
 
 func _init():
 	OS.min_window_size = OS.window_size
 	OS.max_window_size = OS.get_screen_size()
-	var level_resource = load("res://src/level_disco/Level/Disco.tscn")
-	var level_instance = level_resource.instance()
-	self.add_child(level_instance)
+	var level_resource = load(levels[level_counter])
+	current_level_instance  = level_resource.instance()
+	self.add_child(current_level_instance)
 
 func _ready():
-	_death_counter.connect_player()
+	_death_counter.connect_player(players[level_counter])
 	
 func _notification(what):
 	if what == NOTIFICATION_WM_QUIT_REQUEST:
@@ -25,7 +29,13 @@ func _notification(what):
 			$Black/SplitContainer/ViewportContainer1.free()
 			$Black.queue_free()
 
-
+func next_level():
+	current_level_instance.queue_free()
+	level_counter=level_counter+1
+	var level_resource = load(levels[level_counter])
+	current_level_instance  = level_resource.instance()
+	self.add_child(current_level_instance)
+	
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_fullscreen"):
 		OS.window_fullscreen = not OS.window_fullscreen

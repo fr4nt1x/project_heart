@@ -7,12 +7,13 @@
 [node name="Disco" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -392, 360 )
+position = Vector2( -392, 320 )
 
 [node name="FullLevel" parent="." instance=ExtResource( 2 )]
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2( -440, -336 )
+position = Vector2( -336, -328 )
+z_index = 1
 
 [node name="DiscoBall" parent="Node2D" instance=ExtResource( 3 )]
 collision_layer = 16

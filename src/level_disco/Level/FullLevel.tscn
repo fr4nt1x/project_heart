@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/level_disco/Level/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/level_disco/art/DiscoFull.png" type="Texture" id=2]
+[ext_resource path="res://src/level_disco/Level/Logo.tscn" type="PackedScene" id=3]
 
 [node name="FullLevel" type="KinematicBody2D"]
 
@@ -24,13 +25,18 @@ position = Vector2( -488, 296 )
 position = Vector2( 0, -100 )
 polygon = PoolVector2Array( -1600, -300, -1600, -236, 1600, -236, 1600, -300, -13.0956, -300 )
 
+[node name="Bar" type="CollisionPolygon2D" parent="."]
+position = Vector2( 476, 580 )
+polygon = PoolVector2Array( -384, -324, -384, -312, 236, -312, 236, -324 )
+one_way_collision = true
+
 [node name="floor" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, 104 )
-polygon = PoolVector2Array( -1600, 156, -1600, 300, 1600, 300, 1600, 84, 920, 84, 800, 204, 708, 204, 708, 176, 88, 176, 88, 204, -160, 204, -160, 236, -192, 236, -192, 268, -600, 268, -632, 236, -792, 236, -824, 268, -1424, 268, -1428, 156, -1428, 136, -1472, 136, -1472, 156 )
+polygon = PoolVector2Array( -1600, 156, -1600, 300, 1600, 300, 1600, 84, 920, 84, 800, 204, 708, 204, 88, 204, -160, 204, -160, 236, -192, 236, -192, 268, -600, 268, -632, 236, -792, 236, -824, 268, -1424, 268, -1428, 156, -1428, 136, -1472, 136, -1472, 156 )
 
 [node name="OverBar" type="CollisionPolygon2D" parent="."]
 position = Vector2( 24, 112 )
-polygon = PoolVector2Array( 84, -44, 84, -16, 696, -16, 696, -44 )
+polygon = PoolVector2Array( 40, -40, 40, -8, 660, -8, 660, -40 )
 
 [node name="OverDj" type="CollisionPolygon2D" parent="."]
 position = Vector2( -1392, 160 )
@@ -42,3 +48,6 @@ polygon = PoolVector2Array( -1584, 300, -1584, -356, -1664, -356, -1664, 300 )
 [node name="RightWall" type="CollisionPolygon2D" parent="."]
 position = Vector2( 3248, 0 )
 polygon = PoolVector2Array( -1584, 300, -1584, -356, -1664, -356, -1664, 300 )
+
+[node name="Sprite2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1204, -156 )

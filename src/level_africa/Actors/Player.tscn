@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/level_africa/Actors/PlayerAfrica.gd" type="Script" id=1]
-[ext_resource path="res://assets/level_africa/art/audio/sfx/jump.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/general/audio/Jump.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/level_africa/art/audio/sfx/shoot.wav" type="AudioStream" id=4]
 [ext_resource path="res://src/level_africa/Actors/Gun.gd" type="Script" id=9]
 [ext_resource path="res://assets/level_africa/art/player/indy.png" type="Texture" id=10]
@@ -146,7 +146,8 @@ position = Vector2( -1, -30.5 )
 shape = SubResource( 11 )
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 2 )
+volume_db = -15.0
 
 [node name="SpeechLabel" type="RichTextLabel" parent="."]
 margin_left = -66.0
@@ -174,6 +175,7 @@ script = ExtResource( 9 )
 [node name="Shoot" type="AudioStreamPlayer2D" parent="Sprite/Gun"]
 position = Vector2( -30.6589, -6.13176 )
 stream = ExtResource( 4 )
+volume_db = -50.0
 
 [node name="Cooldown" type="Timer" parent="Sprite/Gun"]
 process_mode = 0

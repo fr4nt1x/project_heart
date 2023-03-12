@@ -15,6 +15,7 @@ onready var jump_cooldown = $JumpCooldown
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 const dash_duration = 0.1
+const snap_vector = Vector2.DOWN*20.0
 
 # Horizontal speed in pixels per second.
 export var speed := 150.0
@@ -57,3 +58,9 @@ func stop_cooldowns():
 func perfect_hit():
 	stop_cooldowns()
 	conductor.perfect_hit()
+
+func get_snap_vector():
+	return snap_vector
+	
+func play_jump_sound():
+	sound_jump.play() 

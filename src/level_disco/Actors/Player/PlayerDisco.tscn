@@ -3,7 +3,7 @@
 [ext_resource path="res://src/level_disco/Actors/Player/State/Idle.gd" type="Script" id=1]
 [ext_resource path="res://src/common/StateMachine/StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Run.gd" type="Script" id=3]
-[ext_resource path="res://assets/level_africa/art/audio/sfx/jump.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/general/audio/Jump.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/level_africa/art/player/indy.png" type="Texture" id=5]
 [ext_resource path="res://src/level_disco/Actors/Player/PlayerDisco.gd" type="Script" id=6]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Air.gd" type="Script" id=7]
@@ -111,9 +111,8 @@ anims/jump = SubResource( 4 )
 anims/run = SubResource( 3 )
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2( 1, 0 )
+position = Vector2( 0, -72 )
 current = true
-zoom = Vector2( 0.7, 0.7 )
 process_mode = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -122,6 +121,7 @@ shape = SubResource( 11 )
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+volume_db = -15.0
 
 [node name="SpeechLabel" type="RichTextLabel" parent="."]
 margin_left = -23.0
@@ -140,7 +140,7 @@ position = Vector2( 0, -16 )
 texture = ExtResource( 5 )
 hframes = 3
 vframes = 4
-frame = 4
+frame = 10
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -159,4 +159,4 @@ script = ExtResource( 7 )
 script = ExtResource( 8 )
 
 [node name="Conductor" parent="." instance=ExtResource( 9 )]
-position = Vector2( 0, -128 )
+position = Vector2( 0, -272 )

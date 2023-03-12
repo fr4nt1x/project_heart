@@ -8,6 +8,7 @@ func enter(msg := {}) -> void:
 			player.jump_cooldown.start()
 		else:
 			player.perfect_hit()
+		player.play_jump_sound()
 		player.velocity.y = -player.jump_impulse
 		is_jumping = true
 		player.play_animation("jump")

@@ -16,8 +16,9 @@ func physics_update(delta: float) -> void:
 	
 	player.velocity.x = player.speed * input_direction_x
 	player.velocity.y += player.gravity * delta
-	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
-	
+
+	player.velocity = player.move_and_slide_with_snap(player.velocity, player.get_snap_vector(), Vector2.UP)
+
 	if !(is_equal_approx(input_direction_x, 0.0)):
 		if input_direction_x > 0:
 			player.set_sprite_scale_x( 1)

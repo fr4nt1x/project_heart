@@ -4,35 +4,36 @@
 [ext_resource path="res://assets/level_disco/art/DiscoFull.png" type="Texture" id=2]
 
 [node name="FullLevel" type="KinematicBody2D"]
-position = Vector2( 0, 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
-[node name="Dance2" parent="." instance=ExtResource( 1 )]
-position = Vector2( -536, 208 )
-
 [node name="Dj1" parent="." instance=ExtResource( 1 )]
-position = Vector2( -1228, -44 )
+position = Vector2( -1228, 44 )
 
 [node name="Dj2" parent="." instance=ExtResource( 1 )]
-position = Vector2( -860, -44 )
+position = Vector2( -856, 44 )
 
 [node name="Dance1" parent="." instance=ExtResource( 1 )]
-position = Vector2( -284, 208 )
+position = Vector2( -300, 296 )
+
+[node name="Dance2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -488, 296 )
 
 [node name="Ceiling" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -1600, -300, -1600, -236, 1600, -236, 1600, -300 )
+position = Vector2( 0, -100 )
+polygon = PoolVector2Array( -1600, -300, -1600, -236, 1600, -236, 1600, -300, -13.0956, -300 )
 
 [node name="floor" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 104 )
 polygon = PoolVector2Array( -1600, 156, -1600, 300, 1600, 300, 1600, 84, 920, 84, 800, 204, 708, 204, 708, 176, 88, 176, 88, 204, -160, 204, -160, 236, -192, 236, -192, 268, -600, 268, -632, 236, -792, 236, -824, 268, -1424, 268, -1428, 156, -1428, 136, -1472, 136, -1472, 156 )
 
 [node name="OverBar" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0, 60 )
+position = Vector2( 24, 112 )
 polygon = PoolVector2Array( 84, -44, 84, -16, 696, -16, 696, -44 )
 
 [node name="OverDj" type="CollisionPolygon2D" parent="."]
-position = Vector2( -1392, 56 )
+position = Vector2( -1392, 160 )
 polygon = PoolVector2Array( 100, -40, 100, -24, 604, -24, 604, -40 )
 
 [node name="LeftWall" type="CollisionPolygon2D" parent="."]

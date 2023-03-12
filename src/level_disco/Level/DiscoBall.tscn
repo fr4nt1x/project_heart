@@ -22,28 +22,33 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "swinging"
-length = 1.6
+length = 2.0
 loop = true
+step = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
-"transitions": PoolRealArray( 1, 0.68302, 1, 0.6 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -5, -10 ), Vector2( 0, 0 ), Vector2( 5, -10 ), Vector2( 0, 0 ) ]
+"values": [ 0.0, -12.0, 0.0, 12.0 ]
 }
 
 [node name="DiscoBall" type="KinematicBody2D"]
-position = Vector2( -0.251571, -0.503141 )
 scale = Vector2( 0.6, 0.6 )
 z_index = -1
+collision_layer = 8
+motion/sync_to_physics = true
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1.33514e-05, 6.10352e-05 )
 texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -96, 0 )
 hframes = 3
 
 [node name="LightsPlayer" type="AnimationPlayer" parent="."]
@@ -51,9 +56,9 @@ autoplay = "Spin"
 anims/Spin = SubResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -3.33333, 135 )
+position = Vector2( 0, 520 )
 polygon = PoolVector2Array( -63.3333, -75, 63.3333, -75, 90, -1.66667, 63.3333, 45, 3.33333, 45, -63.3333, 45, -83.3333, -1.66667 )
 
-[node name="Position" type="AnimationPlayer" parent="."]
+[node name="Swinging" type="AnimationPlayer" parent="."]
 autoplay = "swinging"
 anims/swinging = SubResource( 3 )

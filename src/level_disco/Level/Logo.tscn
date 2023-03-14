@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/level_disco/art/ElectriLogo.png" type="Texture" id=1]
+[ext_resource path="res://src/level_disco/Level/Logo.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Blinking"
+resource_name = "blinking"
 length = 1.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -19,10 +20,22 @@ tracks/0/keys = {
 "values": [ 0, 1, 0, 1, 0 ]
 }
 
-[node name="Logo" type="Sprite"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 124, 188 )
+
+[node name="Logo" type="Area2D"]
+collision_layer = 32
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Blinking"
-anims/Blinking = SubResource( 1 )
+anims/blinking = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -4, 8 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Logo_body_entered" flags=6]

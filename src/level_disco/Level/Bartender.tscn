@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/level_disco/art/Bartender.png" type="Texture" id=1]
+[ext_resource path="res://src/level_disco/Level/Bartender.gd" type="Script" id=2]
+[ext_resource path="res://src/level_disco/Level/NPC/Speech.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Beer"
+resource_name = "beer"
 length = 2.6
-loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -19,11 +20,29 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
 }
 
-[node name="Bartender" type="Sprite"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 42, 66 )
+
+[node name="Bartender" type="Area2D"]
+collision_layer = 32
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/beer = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 12
 frame = 11
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Beer"
-anims/Beer = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -70, -2 )
+shape = SubResource( 2 )
+
+[node name="Speech" parent="." instance=ExtResource( 3 )]
+margin_left = -116.0
+margin_top = -64.0
+margin_right = 108.0
+margin_bottom = -16.0
+
+[connection signal="body_entered" from="." to="." method="_on_Bartender_body_entered"]

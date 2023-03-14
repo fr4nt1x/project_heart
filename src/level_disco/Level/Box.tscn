@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/level_disco/art/Box-sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/level_disco/Level/Box.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 35, 6.75 )
+extents = Vector2( 59, 61 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "sound"
@@ -22,19 +23,20 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[node name="Box" type="KinematicBody2D"]
+[node name="Box" type="Area2D"]
+collision_layer = 32
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 16, -5 )
 texture = ExtResource( 1 )
 hframes = 2
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 8, -36.75 )
+position = Vector2( 26, 11 )
 shape = SubResource( 1 )
-one_way_collision = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "sound"
 anims/sound = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Box_body_entered" flags=6]

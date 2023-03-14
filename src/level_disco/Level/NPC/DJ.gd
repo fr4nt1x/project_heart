@@ -37,7 +37,9 @@ func _on_DJ_body_entered(body):
 		if body.everything_fixed():
 			body.needs_beer = true
 			self.call_deferred("speak_beer")
+			body.stateMachine.transition_to("Speak")
 			disconnect("body_entered",self,"_on_DJ_body_entered")
 		elif not body.has_spoken_to_dj:
 			body.has_spoken_to_dj = true
+			body.stateMachine.transition_to("Speak")
 			self.call_deferred("speak_fix_things")

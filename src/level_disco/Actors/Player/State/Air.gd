@@ -7,7 +7,7 @@ func enter(msg := {}) -> void:
 		if not player.is_note_in_goal():	
 			player.jump_cooldown.start()
 		else:
-			player.perfect_hit()
+			player.emit_signal("perfect_hit")
 		player.play_jump_sound()
 		player.velocity.y = -player.jump_impulse
 		is_jumping = true

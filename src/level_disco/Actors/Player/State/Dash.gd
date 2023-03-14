@@ -6,7 +6,7 @@ func enter(_msg := {}) -> void:
 	if not player.is_note_in_goal():	
 		player.dash_cooldown.start()
 	else:
-		player.perfect_hit()
+		player.emit_signal("perfect_hit")
 	call_deferred("stop_dashing")
 	
 func physics_update(_delta: float) -> void:
@@ -16,6 +16,10 @@ func physics_update(_delta: float) -> void:
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 
 func stop_dashing():
+	# Small bug with speaking, one can remove the speak state
+	# if dashed into the speak trigger.
+	# I like the mechanic for going fast so it stays.
+	# A fix would be here to check wether the current state is still dash.
 	yield(get_tree().create_timer(_dash_duration), "timeout")
 	
 	if Input.is_action_just_pressed("jump") and player.can_jump():

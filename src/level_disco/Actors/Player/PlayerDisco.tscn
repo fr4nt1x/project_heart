@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/level_disco/Actors/Player/State/Idle.gd" type="Script" id=1]
 [ext_resource path="res://src/common/StateMachine/StateMachine.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://src/level_disco/Actors/Player/State/Air.gd" type="Script" id=7]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Dash.gd" type="Script" id=8]
 [ext_resource path="res://src/level_disco/Level/Conductor/Conductor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/level_disco/Actors/Player/State/Speak.gd" type="Script" id=10]
+[ext_resource path="res://src/level_disco/Actors/Player/State/Dance.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fall"
@@ -158,5 +160,13 @@ script = ExtResource( 7 )
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
 
+[node name="Speak" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="Dance" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
 [node name="Conductor" parent="." instance=ExtResource( 9 )]
 position = Vector2( 0, -186.667 )
+
+[connection signal="perfect_hit" from="." to="." method="_on_PlayerDisco_perfect_hit"]

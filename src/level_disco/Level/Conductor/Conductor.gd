@@ -34,6 +34,7 @@ func reset_label(time):
 	label.set_text("")
 	
 func perfect_hit():
+	note_inside_goal=false # only one perfect hit per note
 	label.set_text("Perfect!")
 	call_deferred("reset_label",0.6)
 	

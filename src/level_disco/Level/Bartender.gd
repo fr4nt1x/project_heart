@@ -26,5 +26,6 @@ func _on_Bartender_body_entered(body):
 			body.needs_beer = false
 			animationPlayer.play("beer")
 			body.should_dance = true
+			body.stateMachine.transition_to("Speak")
 			disconnect("body_entered",self,"_on_Bartender_body_entered")
 			self.call_deferred("speak")

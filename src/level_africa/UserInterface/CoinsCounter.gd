@@ -16,8 +16,14 @@ func connect_player(player_string):
 	#TODO make dynamic based on level choice
 	var _player_path = get_node(player_string)
 	if "Africa" in player_string:
-		_player_path.connect("reset_player", self, "_add_reset")
+		_player_path.connect("reset_player", self, "_increment")
+	if "Disco" in player_string:
+		_player_path.connect("perfect_hit", self, "_increment")
+		
+func reset():
+	number_resets=0
+	coins_label.set_text(str(number_resets))
 	
-func _add_reset():
+func _increment():
 	number_resets += 1
 	coins_label.set_text(str(number_resets))

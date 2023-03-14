@@ -29,4 +29,5 @@ func speak():
 func _on_ClothingRacks_body_entered(body):
 	if body.name=="Player":
 		speechLabel.clear()
+		body.stateMachine.transition_to("Speak")
 		self.call_deferred("speak")

@@ -6,8 +6,7 @@ func _ready():
 
 
 func _on_DanceArea_body_entered(body):
-	print(body)
 	if body.name=="Player":
 		if body.should_dance:
-			print("dancing")#TODO at dancing state
+			body.stateMachine.transition_to("Dance")
 			disconnect("body_entered",self,"_on_DanceArea_body_entered")

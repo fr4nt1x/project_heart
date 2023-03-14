@@ -6,6 +6,7 @@ enum State {
 	DASHING,
 	JUMPING,
 }
+signal perfect_hit()
 
 onready var platform_detector = $PlatformDetector
 onready var animation_player = $AnimationPlayer
@@ -22,13 +23,13 @@ onready var should_dance = false
 onready var number_of_fixed_things= 0
 const things_fix = 3
 
-var fixing_lines = [["One down three to go!"],
+const fixing_lines = [["One down three to go!"],
 					["Two down three to go!"],
 					["All fixed, I should return to the DJ!"]]
-var fixing_lines_no_dj = [["Hmm this seems broken I better plug it in."],
+const fixing_lines_no_dj = [["Hmm this seems broken I better plug it in."],
 					["Another one. Lets plug this one in too."],
 					["Everythings unplugged, I better ask the DJ about this."]]
-					
+const lines_leaving = ["Okay I think I will go home now! Bye everyone!"]					
 const dash_duration = 0.1
 const snap_vector = Vector2.DOWN*20.0
 
@@ -42,18 +43,21 @@ export var jump_impulse := 450.0
 
 export var velocity: Vector2
 
-onready var fsm := $StateMachine
+onready var stateMachine := $StateMachine
 onready var speechLabel:RichTextLabel = $SpeechLabel
 
 func _ready():
 	gravity = ProjectSettings.get("physics/2d/default_gravity")
-	
+
 func plug_in_objects():
 	if has_spoken_to_dj:
 		self.speak(fixing_lines[number_of_fixed_things])
 	else:
 		self.speak(fixing_lines_no_dj[number_of_fixed_things])
 	number_of_fixed_things=number_of_fixed_things+1
+
+func time_to_leave_disco():
+	self.speak(lines_leaving)
 	
 func speak(lines):
 	speechLabel.clear()
@@ -80,10 +84,6 @@ func can_jump():
 func stop_cooldowns():
 	jump_cooldown.stop()
 	dash_cooldown.stop()
-	
-func perfect_hit():
-	stop_cooldowns()
-	conductor.perfect_hit()
 
 func get_snap_vector():
 	return snap_vector
@@ -93,3 +93,8 @@ func play_jump_sound():
 
 func everything_fixed ():
 	return things_fix == number_of_fixed_things
+
+
+func _on_PlayerDisco_perfect_hit():
+	stop_cooldowns()
+	conductor.perfect_hit()

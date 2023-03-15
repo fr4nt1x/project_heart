@@ -23,7 +23,7 @@ texture = ExtResource( 4 )
 position = Vector2( -879, -75 )
 
 [node name="Box2" parent="." instance=ExtResource( 1 )]
-position = Vector2( -141, -179 )
+position = Vector2( -148, -152 )
 
 [node name="Ceiling" type="CollisionPolygon2D" parent="."]
 position = Vector2( 1, -100 )
@@ -39,12 +39,19 @@ position = Vector2( 0, 104 )
 polygon = PoolVector2Array( -1600, 168, -1600, 300, 1600, 300, 1596, 104, 892, 104, 800, 204, -112, 208, -112, 232, -192, 232, -272, 232, -548, 232, -600, 208, -776, 208, -824, 232, -1396, 232, -1424, 168 )
 
 [node name="OverBar" type="CollisionPolygon2D" parent="."]
-position = Vector2( 24, 112 )
-polygon = PoolVector2Array( 40, -40, 40, -8, 660, -8, 660, -40 )
+position = Vector2( 88, 92 )
+polygon = PoolVector2Array( -19, -39, -19, -23, 661, -23, 660, -40 )
+one_way_collision = true
+
+[node name="OverBar2" type="CollisionPolygon2D" parent="."]
+position = Vector2( -640, -48 )
+polygon = PoolVector2Array( 392, -24, 392, -12, 600, -12, 600, -24 )
+one_way_collision = true
 
 [node name="OverDj" type="CollisionPolygon2D" parent="."]
-position = Vector2( -1248, 56 )
-polygon = PoolVector2Array( 100, -40, 100, -24, 604, -24, 604, -40 )
+position = Vector2( -1272, 64 )
+polygon = PoolVector2Array( 100, -40, 100, -24, 648, -24, 648, -44 )
+one_way_collision = true
 
 [node name="LeftWall" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -1584, 300, -1584, -356, -1664, -356, -1664, 300 )
@@ -67,4 +74,4 @@ position = Vector2( 1162, 178 )
 position = Vector2( -1435, 276 )
 
 [node name="DanceArea" parent="." instance=ExtResource( 8 )]
-position = Vector2( -1043, 248 )
+position = Vector2( -1128, 304 )

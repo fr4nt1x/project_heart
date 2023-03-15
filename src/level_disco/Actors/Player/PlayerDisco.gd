@@ -33,6 +33,8 @@ const lines_leaving = ["Okay I think I will go home now! Bye everyone!"]
 const dash_duration = 0.1
 const snap_vector = Vector2.DOWN*20.0
 
+# Time spend in dancing area
+export var dancing_time=10
 # Horizontal speed in pixels per second.
 export var speed := 150.0
 # Vertical acceleration in pixel per second squared.

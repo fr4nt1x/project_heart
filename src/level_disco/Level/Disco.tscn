@@ -12,7 +12,7 @@ position = Vector2( 1536, 168 )
 [node name="FullLevel" parent="." instance=ExtResource( 2 )]
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2( -336, -328 )
+position = Vector2( -424, -328 )
 z_index = 1
 
 [node name="DiscoBall" parent="Node2D" instance=ExtResource( 3 )]

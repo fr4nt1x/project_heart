@@ -18,7 +18,7 @@ func animation_finished():
 	game.call_deferred("next_level")
 
 func _on_Area2D_body_entered(body):
-	if body.name == "Player":
+	if body.name == "PlayerAfrica":
 		animation_player.play("dropping")
 		body.set_physics_process(false)#TODO make player a state machine with death animation
 		body.set_process(false)#TODO make player a state machine with death animation

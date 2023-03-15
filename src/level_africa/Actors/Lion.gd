@@ -19,7 +19,7 @@ onready var animation_player = $AnimationPlayer
 func _ready():
 	_velocity.x = speed.x
 	_starting_pos = self.position
-	var _player_node = get_node("../../Player")
+	var _player_node = get_node("../../PlayerAfrica")
 	_player_node.connect("reset_player",self,"reset")
 	self.set_meta("type","enemy")
 	
@@ -63,7 +63,7 @@ func _physics_process(_delta):
 		
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.name == "Player":
+		if collision.collider.name == "PlayerAfrica":
 			collision.collider.resetPlayer()
 func reset():
 	self.stop_feasting()

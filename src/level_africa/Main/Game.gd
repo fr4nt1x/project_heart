@@ -7,9 +7,14 @@ extends Node
 # that is to say, another node or script should not access them.
 onready var _pause_menu = $InterfaceLayer/PauseMenu
 onready var _death_counter = $InterfaceLayer/CoinsCounter
-var levels = [ "res://src/level_africa/Level/Africa.tscn","res://src/level_disco/Level/Disco.tscn"]
-var players = [ "/root/Game/Africa/Level/Player","/root/Game/Disco/Player"]
-var level_counter = 0 # should be 0, but can be incremented for debuuging
+var levels = [ "res://src/level_africa/Level/Africa.tscn",
+			   "res://src/level_disco/Level/Disco.tscn",
+			   "res://src/level_moving/Moving.tscn"]
+			
+var players = [ "/root/Game/Africa/Level/PlayerAfrica",
+				"/root/Game/Disco/Player",
+				"/root/Game/Moving/PlayerMoving"]
+var level_counter = 1 # should be 0, but can be incremented for debugging
 var current_level_instance
 
 func _init():
@@ -34,9 +39,12 @@ func next_level():
 	self.remove_child(current_level_instance)
 	current_level_instance.call_deferred("free")
 	level_counter=level_counter+1
+	_death_counter.reset()
 	var level_resource = load(levels[level_counter])
 	current_level_instance  = level_resource.instance()
 	self.add_child(current_level_instance)
+
+	_death_counter.connect_player(players[level_counter])
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_fullscreen"):

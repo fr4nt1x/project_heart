@@ -20,6 +20,7 @@ onready var sound_jump = $Jump
 onready var has_spoken_to_dj = false
 onready var needs_beer = false
 onready var should_dance = false
+onready var should_exit = false
 onready var number_of_fixed_things= 0
 const things_fix = 3
 
@@ -59,6 +60,7 @@ func plug_in_objects():
 	number_of_fixed_things=number_of_fixed_things+1
 
 func time_to_leave_disco():
+	self.should_exit = true
 	self.speak(lines_leaving)
 	
 func speak(lines):

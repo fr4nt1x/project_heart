@@ -63,7 +63,7 @@ func _physics_process(_delta):
 		
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.name == "Player":
+		if collision.collider.name == "PlayerAfrica":
 			collision.collider.resetPlayer()
 func reset():
 	self.stop_feasting()

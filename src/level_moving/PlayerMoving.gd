@@ -10,16 +10,18 @@ const step_x := Vector2(64,0)
 const step_y := Vector2(0,-64)
 const step_z := Vector2(-32,-16)
 var space_occupied_matrix:=[]
+var box_scene = load("res://src/level_moving/Box.tscn")	
+var kallax_scene = load("res://src/level_moving/Kallax.tscn")
 
 func _build_debug_grid():
-	var scene = load("res://src/level_moving/Box.tscn")	
 	for x in range(size_x):
 		for y in range(size_y):
 			for z in range(size_z):
 				if space_occupied_matrix[x][y][z]:
-					var box = scene.instance()
+					var box = box_scene.instance()
 					box.position = Vector2(x*step_x)+Vector2(y*step_y)+Vector2(z*step_z)
 					add_child(box)
+					
 func _init():
 	for x in range(size_x):
 		space_occupied_matrix.append([])
@@ -36,15 +38,26 @@ func _ready():
 
 func _can_move(position_index):
 	var can_move:=true
-	if ((position_index[0] <0 or position_index[0] >= size_x) or 
-		(position_index[1] <0 or position_index[1] >= size_y) or
-		(position_index[2] <0 or position_index[2] >= size_z)):
+	var x = position_index[0]
+	var y = position_index[1]
+	var z = position_index[2]
+	if ((x <0 or x >= size_x) or 
+		(y <0 or y >= size_y) or
+		(z <0 or z >= size_z)):
 		can_move=false
 	elif self.space_occupied_matrix[position_index[0]][position_index[1]][position_index[2]]:
 		can_move=false
-		
+	
+	if not can_move:
+		var box = box_scene.instance()
+		box.position = Vector2(x*step_x)+Vector2(y*step_y)+Vector2(z*step_z)
+		add_child(box)
 	return can_move
-
+	
+func spawn_new_prop():
+	current_prop = kallax_scene.instance()
+	add_child(current_prop)
+	
 func can_move_in_z(position_indices):
 	for x in position_indices:
 		#keep order of comparisons

@@ -14,7 +14,14 @@ func _ready():
 	pass
 	
 
+func plant_prop():
+	#TODO Move down
+	for position in self.position_indices:
+		parent.space_occupied_matrix[position[0]][position[1]][position[2]] = true
+	parent.spawn_new_prop()
 	
+func _set_z_index(position_index):
+	self.z_index = position_index[0]*-1 + position_index[2]*-1 
 func move(direction):
 	var new_position_indices:=[]
 	var new_index:=Vector3()
@@ -25,10 +32,10 @@ func move(direction):
 			return
 		
 	self.position_indices = new_position_indices
-		
+	self._set_z_index(self.position_indices[0])	
 	#TODO vector dot product
 	self.position = (position_indices[0][0]* self.step_x + 
 						position_indices[0][1]* self.step_y+
 						position_indices[0][2] * self.step_z)
 	if not parent.can_move_in_z(self.position_indices):
-		print("next prop")#todo next prop
+		plant_prop()

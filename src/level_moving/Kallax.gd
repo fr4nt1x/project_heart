@@ -1,41 +1,46 @@
-extends Node2D
+extends GenericProp
 
-# X right
-# Y top
-# Z depth
-const step_x := Vector2(64,0)
-const step_y := Vector2(0,-64)
-const step_z := Vector2(-32,-16)
-
-var position_indices := [Vector3(0,0,0),Vector3(0,1,0),Vector3(0,2,0),Vector3(0,3,0)]
-onready var parent:=get_node("../")
+func _init():
+	self.position_indices = [Vector3(0,0,0),Vector3(0,1,0),Vector3(0,2,0),Vector3(0,3,0)]
+	self.number_of_orientations = 2
 
 func _ready():
-	pass
+	var i := 1
+	for index in self.position_indices:
+		var sprite := get_node('./Sprite'+str(i))
+		self.sprites.append(sprite)
+		i+=1
 	
+	
+func rotate_one_step():
+	var new_position_indices:= self.position_indices.duplicate(true)
+	var new_orientation:int = self.current_orientation +1
+	if new_orientation >= number_of_orientations:
+		new_orientation= 0
+	match (new_orientation):
+		0:
+			new_position_indices[0] = new_position_indices[0] - Vector3(3,0,0)
+			new_position_indices[1] = new_position_indices[1] - Vector3(2,-1,0)
+			new_position_indices[2] = new_position_indices[2] - Vector3(1,-2,0)
+			new_position_indices[3] = new_position_indices[3] - Vector3(0,-3,0)
 
-func plant_prop():
-	#TODO Move down
-	for position in self.position_indices:
-		parent.space_occupied_matrix[position[0]][position[1]][position[2]] = true
-	parent.spawn_new_prop()
-	
-func _set_z_index(position_index):
-	self.z_index = position_index[0]*-1 + position_index[2]*-1 
-func move(direction):
-	var new_position_indices:=[]
-	var new_index:=Vector3()
-	for i in self.position_indices.size():
-		new_index= self.position_indices[i]+direction
-		new_position_indices.append(new_index)
-		if not parent._can_move(new_index):
+		1:
+			new_position_indices[0] = new_position_indices[0] + Vector3(3,0,0)
+			new_position_indices[1] = new_position_indices[1] + Vector3(2,-1,0)
+			new_position_indices[2] = new_position_indices[2] + Vector3(1,-2,0)
+			new_position_indices[3] = new_position_indices[3] + Vector3(0,-3,0)
+		_:
+			print("Error should not happen")
 			return
-		
+	
+	for position_index in new_position_indices:
+		if not parent._can_move(position_index):
+			return
+
+	var orientation_diff:int= new_orientation-self.current_orientation
+	self.current_orientation = new_orientation
+
 	self.position_indices = new_position_indices
-	self._set_z_index(self.position_indices[0])	
-	#TODO vector dot product
-	self.position = (position_indices[0][0]* self.step_x + 
-						position_indices[0][1]* self.step_y+
-						position_indices[0][2] * self.step_z)
-	if not parent.can_move_in_z(self.position_indices):
-		plant_prop()
+
+	for sprite in self.sprites:
+		sprite.frame_coords.x += orientation_diff

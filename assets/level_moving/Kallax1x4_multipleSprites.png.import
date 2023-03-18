@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Kallax1x4.png-f527623a4e54be4c0adb920b1891e2be.stex"
+path="res://.import/Kallax1x4_multipleSprites.png-5d6a2996ba8e1d8fcf5ded9e56d13d1e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/level_moving/Kallax1x4.png"
-dest_files=[ "res://.import/Kallax1x4.png-f527623a4e54be4c0adb920b1891e2be.stex" ]
+source_file="res://assets/level_moving/Kallax1x4_multipleSprites.png"
+dest_files=[ "res://.import/Kallax1x4_multipleSprites.png-5d6a2996ba8e1d8fcf5ded9e56d13d1e.stex" ]
 
 [params]
 

@@ -1,3 +1,4 @@
+class_name PlayerMoving
 extends Node
 
 # For now the last child
@@ -10,7 +11,9 @@ const step_x := Vector2(64,0)
 const step_y := Vector2(0,-64)
 const step_z := Vector2(-32,-16)
 var space_occupied_matrix:=[]
+var z_index_matrix:=[]
 var box_scene = load("res://src/level_moving/Box.tscn")	
+var box_debug = load("res://src/level_moving/Box_debug.tscn")	
 var kallax_scene = load("res://src/level_moving/Kallax.tscn")
 
 func _build_debug_grid():
@@ -18,23 +21,42 @@ func _build_debug_grid():
 		for y in range(size_y):
 			for z in range(size_z):
 				if space_occupied_matrix[x][y][z]:
-					var box = box_scene.instance()
+					var box = box_debug.instance()
 					box.position = Vector2(x*step_x)+Vector2(y*step_y)+Vector2(z*step_z)
 					add_child(box)
 					
 func _init():
+	#could be one loop, but only called once
+	self._generate_space_occupied_matrix()
+	self._generate_z_index_matrix()
+
+func _generate_space_occupied_matrix():
 	for x in range(size_x):
-		space_occupied_matrix.append([])
-		space_occupied_matrix[x] = []
+		self.space_occupied_matrix.append([])
+		self.space_occupied_matrix[x] = []
 		for y in range(size_y):
-			space_occupied_matrix[x].append([])
-			space_occupied_matrix[x][y] = []
+			self.space_occupied_matrix[x].append([])
+			self.space_occupied_matrix[x][y] = []
 			for z in range(size_z):
-				space_occupied_matrix[x][y].append([])
-				space_occupied_matrix[x][y][z]=false
-				
+				self.space_occupied_matrix[x][y].append([])
+				self.space_occupied_matrix[x][y][z]=false
+
+func _generate_z_index_matrix(): 
+	for x in range(size_x):
+		self.z_index_matrix.append([])
+		self.z_index_matrix[x] = []
+		for y in range(size_y):
+			self.z_index_matrix[x].append([])
+			self.z_index_matrix[x][y] = []
+			for z in range(size_z):
+				self.z_index_matrix[x][y].append([])
+				# z index should have the furthes z_index independent of x,y
+				#x smaller means further to the left -> higher z_index
+				#y smaller means further at the bottom -> lower z_index 
+				self.z_index_matrix[x][y][z]=x*-1+y + z*-(size_x*size_y)
+
 func _ready():
-	_build_debug_grid()
+	pass
 
 func _can_move(position_index):
 	var can_move:=true
@@ -53,6 +75,9 @@ func _can_move(position_index):
 		box.position = Vector2(x*step_x)+Vector2(y*step_y)+Vector2(z*step_z)
 		add_child(box)
 	return can_move
+
+func get_z_index(position_index):
+	return self.z_index_matrix[position_index[0]][position_index[1]][position_index[2]]
 	
 func spawn_new_prop():
 	current_prop = kallax_scene.instance()
@@ -82,5 +107,9 @@ func _process(_delta):
 		direction= Vector3(0,-1,0)
 	elif Input.is_action_just_pressed("shoot"):
 		direction= Vector3(0,0,1)
+	elif Input.is_action_just_pressed("rotate"):
+		current_prop.rotate_one_step()
 	if direction != Vector3(0,0,0):
-		current_prop.move(direction)
+		current_prop.move(direction, true)
+		if not can_move_in_z(current_prop.position_indices):
+			current_prop.plant_prop()

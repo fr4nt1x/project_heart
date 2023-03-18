@@ -15,6 +15,7 @@ var z_index_matrix:=[]
 var box_scene = load("res://src/level_moving/Box.tscn")	
 var box_debug = load("res://src/level_moving/Box_debug.tscn")	
 var kallax_scene = load("res://src/level_moving/Kallax.tscn")
+var kallax4x4_scene = load("res://src/level_moving/Kallax4x4.tscn")
 
 func _build_debug_grid():
 	for x in range(size_x):
@@ -78,9 +79,9 @@ func _can_move(position_index):
 
 func get_z_index(position_index):
 	return self.z_index_matrix[position_index[0]][position_index[1]][position_index[2]]
-	
+
 func spawn_new_prop():
-	current_prop = kallax_scene.instance()
+	current_prop = kallax4x4_scene.instance()
 	add_child(current_prop)
 	
 func can_move_in_z(position_indices):

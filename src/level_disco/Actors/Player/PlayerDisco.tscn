@@ -1,16 +1,100 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/level_disco/Actors/Player/State/Idle.gd" type="Script" id=1]
 [ext_resource path="res://src/common/StateMachine/StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Run.gd" type="Script" id=3]
 [ext_resource path="res://assets/general/audio/Jump.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/level_africa/art/player/indy.png" type="Texture" id=5]
+[ext_resource path="res://assets/level_disco/art/player.png" type="Texture" id=5]
 [ext_resource path="res://src/level_disco/Actors/Player/PlayerDisco.gd" type="Script" id=6]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Air.gd" type="Script" id=7]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Dash.gd" type="Script" id=8]
 [ext_resource path="res://src/level_disco/Level/Conductor/Conductor.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Speak.gd" type="Script" id=10]
 [ext_resource path="res://src/level_disco/Actors/Player/State/Dance.gd" type="Script" id=11]
+
+[sub_resource type="Animation" id=15]
+resource_name = "DanceDash"
+length = 0.9
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 25, 26, 27, 11 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "DanceJump"
+length = 1.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 17, 18, 19, 20, 21, 22, 23, 24, 17 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "DanceLeft"
+length = 0.9
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 16, 11 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "DanceRight"
+length = 0.9
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 12, 13, 11 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "dash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "fall"
@@ -59,7 +143,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.19, 0.37 ),
+"times": PoolRealArray( 0, 0.2, 0.37 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 8, 9, 10 ]
@@ -90,6 +174,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = 1
 collision_mask = 28
 script = ExtResource( 6 )
+dancing_time = 15
 
 [node name="DashCooldown" type="Timer" parent="."]
 process_mode = 0
@@ -108,6 +193,11 @@ collision_mask = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.6
+anims/DanceDash = SubResource( 15 )
+anims/DanceJump = SubResource( 12 )
+anims/DanceLeft = SubResource( 13 )
+anims/DanceRight = SubResource( 14 )
+anims/dash = SubResource( 16 )
 anims/fall = SubResource( 1 )
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 4 )
@@ -141,8 +231,8 @@ deselect_on_focus_loss_enabled = false
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -16 )
 texture = ExtResource( 5 )
-hframes = 3
-vframes = 4
+hframes = 32
+frame = 31
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )

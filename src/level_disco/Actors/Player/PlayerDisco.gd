@@ -19,7 +19,7 @@ onready var sound_jump = $Jump
 #Variables for quests
 onready var has_spoken_to_dj = false
 onready var needs_beer = false
-onready var should_dance = true
+onready var should_dance = false
 onready var should_exit = false
 onready var number_of_fixed_things= 0
 const things_fix = 3

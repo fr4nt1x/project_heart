@@ -2,7 +2,7 @@ extends PlayerState
 const _dash_duration = 0.25
 
 func enter(_msg := {}) -> void:
-	player.play_animation("fall")
+	player.play_animation("dash")
 	if not player.is_note_in_goal():	
 		player.dash_cooldown.start()
 	else:

@@ -19,9 +19,13 @@ func physics_update(_delta: float) -> void:
 		#TODO animate player
 		if Input.is_action_just_pressed("jump"):
 			player.emit_signal("perfect_hit")
+			player.play_animation("DanceJump")
 		elif Input.is_action_just_pressed("shoot"):
 			player.emit_signal("perfect_hit")
+			player.play_animation("DanceDash")
 		elif Input.is_action_just_pressed("move_right"):
 			player.emit_signal("perfect_hit")
+			player.play_animation("DanceRight")
 		elif Input.is_action_just_pressed("move_left"):
 			player.emit_signal("perfect_hit")
+			player.play_animation("DanceLeft")

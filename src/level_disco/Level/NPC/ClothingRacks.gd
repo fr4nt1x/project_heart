@@ -5,7 +5,8 @@ extends Area2D
 # var a = 2
 # var b = "text"
 
-onready var speechLabel:RichTextLabel =$Speech
+onready var speech_node:SpeechNode=$SpeechNode
+onready var animation_player:AnimationPlayer=$AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -20,14 +21,12 @@ func speak():
 				 "will instantly refresh your jump/dash?",
 				 "Right now the beat seems to be somewhat weak.",
 				 "Could you please ask the DJ about this?"]
-	for line in lines:
-		speechLabel.bbcode_text = line
-		yield(get_tree().create_timer(2), "timeout")
-	speechLabel.clear()
+	animation_player.play("talk")
+	yield(speech_node.speak(lines),"completed")
+	animation_player.stop()
 	
 	
 func _on_ClothingRacks_body_entered(body):
 	if body.name=="Player":
-		speechLabel.clear()
 		body.stateMachine.transition_to("Speak")
 		self.call_deferred("speak")

@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/level_disco/art/DiscoFull.png" type="Texture" id=2]
 [ext_resource path="res://src/level_disco/Level/Logo.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/level_disco/art/DiscoBackground.png" type="Texture" id=4]
-[ext_resource path="res://src/level_disco/Level/Bartender.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/level_disco/Level/NPC/Bartender.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/level_disco/Level/NPC/ClothingRacks.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/level_disco/Level/NPC/DJ.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/level_disco/Level/NPC/DanceArea.tscn" type="PackedScene" id=8]
@@ -30,14 +30,9 @@ position = Vector2( -148, -152 )
 position = Vector2( 1, -100 )
 polygon = PoolVector2Array( -1600, -300, -1600, -236, 1600, -236, 1600, -300, -13.0956, -300 )
 
-[node name="Bar" type="CollisionPolygon2D" parent="."]
-position = Vector2( 476, 580 )
-polygon = PoolVector2Array( -384, -324, -384, -312, 236, -312, 236, -324 )
-one_way_collision = true
-
 [node name="floor" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, 104 )
-polygon = PoolVector2Array( -1600, 168, -1600, 300, 1600, 300, 1596, 104, 892, 104, 800, 204, -112, 208, -112, 232, -192, 232, -272, 232, -548, 232, -600, 208, -776, 208, -824, 232, -1396, 232, -1424, 168 )
+polygon = PoolVector2Array( -1596, -28, -1600, 300, 1600, 300, 1596, 104, 892, 104, 800, 204, -112, 208, -112, 232, -192, 232, -272, 232, -548, 232, -600, 180, -748, 180, -780, 212, -1272, 156, -1272, 120, -1320, 112, -1324, 84, -1408, 76, -1408, -28 )
 
 [node name="OverBar" type="CollisionPolygon2D" parent="."]
 position = Vector2( 88, 92 )
@@ -55,6 +50,7 @@ polygon = PoolVector2Array( 100, -40, 100, -24, 648, -24, 648, -44 )
 one_way_collision = true
 
 [node name="LeftWall" type="CollisionPolygon2D" parent="."]
+position = Vector2( 24, 12 )
 polygon = PoolVector2Array( -1584, 300, -1584, -356, -1664, -356, -1664, 300 )
 
 [node name="RightWall" type="CollisionPolygon2D" parent="."]
@@ -69,13 +65,14 @@ scale = Vector2( 0.85, 0.875 )
 position = Vector2( 467, 234 )
 
 [node name="ClothingRacks" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1162, 178 )
+position = Vector2( 1160, 130 )
+z_index = -1
 
 [node name="DJ" parent="." instance=ExtResource( 7 )]
-position = Vector2( -1435, 276 )
+position = Vector2( -1408, 208 )
 
 [node name="DanceArea" parent="." instance=ExtResource( 8 )]
-position = Vector2( -1128, 304 )
+position = Vector2( -1020, 253 )
 
-[node name="DanceArea2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1524, 164 )
+[node name="Exit" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1528, 204 )

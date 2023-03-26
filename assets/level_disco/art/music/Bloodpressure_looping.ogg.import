@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Bloodpressure_looping.ogg-5298a52c55c593d8bea88a4e120208ea.oggstr"
+
+[deps]
+
+source_file="res://assets/level_disco/art/music/Bloodpressure_looping.ogg"
+dest_files=[ "res://.import/Bloodpressure_looping.ogg-5298a52c55c593d8bea88a4e120208ea.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

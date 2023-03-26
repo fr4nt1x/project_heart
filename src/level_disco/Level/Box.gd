@@ -2,7 +2,7 @@ extends Area2D
 
 
 onready var animationPlayer = $AnimationPlayer
-
+onready var audio_player = $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,3 +18,4 @@ func _on_Box_body_entered(body):
 	if body.name=="Player":
 		animationPlayer.play("sound")
 		body.plug_in_objects()
+		audio_player.volume_db = 0

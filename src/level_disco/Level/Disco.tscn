@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/level_disco/Actors/Player/PlayerDisco.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/level_disco/Level/FullLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/level_disco/Level/DiscoBall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/level_disco/art/music/Bloodpressure_looping.ogg" type="AudioStream" id=4]
 
 [node name="Disco" type="Node2D"]
 
@@ -18,3 +19,9 @@ z_index = 1
 [node name="DiscoBall" parent="Node2D" instance=ExtResource( 3 )]
 collision_layer = 16
 motion/sync_to_physics = false
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -1472, 144 )
+stream = ExtResource( 4 )
+autoplay = true
+attenuation = 10.0

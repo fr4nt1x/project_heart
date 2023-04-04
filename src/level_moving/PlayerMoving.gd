@@ -4,8 +4,8 @@ extends Node
 # For now the last child
 onready var current_prop = self.get_children()[-1]
 
-const size_x := 6
-const size_y := 6
+const size_x := 8
+const size_y := 8
 const size_z := 10
 const step_x := Vector2(64,0)
 const step_y := Vector2(0,-64)

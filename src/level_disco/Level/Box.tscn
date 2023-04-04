@@ -9,7 +9,7 @@ extents = Vector2( 59, 61 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "sound"
-length = 0.5
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/level_disco/art/conductor.png" type="Texture" id=1]
 [ext_resource path="res://src/level_disco/Level/Conductor/BeatNote.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -12,7 +12,7 @@ collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.694118, 0.152941, 0.152941, 1 )
+modulate = Color( 0.870588, 0.188235, 0.188235, 1 )
 position = Vector2( 4.76837e-07, 0 )
 scale = Vector2( 0.5, 1 )
 texture = ExtResource( 1 )

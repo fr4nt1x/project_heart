@@ -47,28 +47,22 @@ export var jump_impulse := 450.0
 export var velocity: Vector2
 
 onready var stateMachine := $StateMachine
-onready var speechLabel:RichTextLabel = $SpeechLabel
+onready var speechNode = $SpeechNode
 
 func _ready():
 	gravity = ProjectSettings.get("physics/2d/default_gravity")
 
 func plug_in_objects():
 	if has_spoken_to_dj:
-		self.speak(fixing_lines[number_of_fixed_things])
+		speechNode.speak(fixing_lines[number_of_fixed_things])
 	else:
-		self.speak(fixing_lines_no_dj[number_of_fixed_things])
+		speechNode.speak(fixing_lines_no_dj[number_of_fixed_things])
 	number_of_fixed_things=number_of_fixed_things+1
 
 func time_to_leave_disco():
 	self.should_exit = true
-	self.speak(lines_leaving)
+	speechNode.speak(lines_leaving)
 	
-func speak(lines):
-	speechLabel.clear()
-	for line in lines:
-		speechLabel.bbcode_text = line
-		yield(get_tree().create_timer(2), "timeout")
-	speechLabel.clear()
 	
 func set_sprite_scale_x(scale:float):
 	sprite.scale.x=scale

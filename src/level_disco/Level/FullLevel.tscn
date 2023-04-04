@@ -50,7 +50,8 @@ polygon = PoolVector2Array( 100, -40, 100, -24, 648, -24, 648, -44 )
 one_way_collision = true
 
 [node name="LeftWall" type="CollisionPolygon2D" parent="."]
-position = Vector2( 24, 12 )
+position = Vector2( 1501, 12 )
+scale = Vector2( 1.875, 1 )
 polygon = PoolVector2Array( -1584, 300, -1584, -356, -1664, -356, -1664, 300 )
 
 [node name="RightWall" type="CollisionPolygon2D" parent="."]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/level_moving/Kallax1x2_multipleSprites.png" type="Texture" id=1]
+[ext_resource path="res://src/level_moving/Kallax1x2.gd" type="Script" id=2]
+
+[node name="Kallax1x2" type="Node2D"]
+visible = false
+script = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="."]
+position = Vector2( 96, -160 )
+texture = ExtResource( 1 )
+hframes = 2
+vframes = 2
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 96, -160 )
+texture = ExtResource( 1 )
+hframes = 2
+vframes = 2
+frame = 2

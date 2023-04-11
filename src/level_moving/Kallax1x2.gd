@@ -2,7 +2,7 @@ extends GenericProp
 
 func _init():
 	self.position_indices = [Vector3(0,0,0),Vector3(0,1,0)]
-	self.number_of_orientations = 2
+	self.number_of_orientations = 3
 
 func _ready():
 	var i := 1
@@ -19,12 +19,15 @@ func rotate_one_step():
 		new_orientation= 0
 	match (new_orientation):
 		0:
-			new_position_indices[0] = new_position_indices[0] - Vector3(1,0,0)
+			new_position_indices[0] = new_position_indices[0] - Vector3(0,0,1)
 			new_position_indices[1] = new_position_indices[1] + Vector3(0,1,0)
 
 		1:
 			new_position_indices[0] = new_position_indices[0] + Vector3(1,0,0)
 			new_position_indices[1] = new_position_indices[1] - Vector3(0,1,0)
+		2:
+			new_position_indices[0] = new_position_indices[0] - Vector3(1,0,0) + Vector3(0,0,1)
+			new_position_indices[1] = new_position_indices[1]
 		_:
 			print("Error should not happen")
 			return

@@ -18,7 +18,8 @@ var box_debug = load("res://src/level_moving/Box_debug.tscn")
 var kallax_scene = load("res://src/level_moving/Kallax.tscn")
 var kallax4x4_scene = load("res://src/level_moving/Kallax4x4.tscn")
 var kallax1x2_scene = load("res://src/level_moving/Kallax1x2.tscn")
-var list_of_props = [kallax_scene,kallax4x4_scene,kallax1x2_scene]
+var kallax2x2_scene = load("res://src/level_moving/Kallax2x2.tscn")
+var list_of_props = [kallax_scene,kallax4x4_scene,kallax1x2_scene,kallax2x2_scene]
 
 func _build_debug_grid():
 	for x in range(size_x):

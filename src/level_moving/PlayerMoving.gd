@@ -111,6 +111,8 @@ func spawn_new_prop():
 	current_prop_index+=1
 	if current_prop_index >= list_of_props.size():
 		current_prop_index = 0
+		randomize()
+		list_of_props.shuffle()
 
 func can_move_in_z(position_indices):
 	for x in position_indices:

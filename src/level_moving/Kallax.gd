@@ -41,6 +41,7 @@ func rotate_one_step():
 	self.current_orientation = new_orientation
 
 	self.position_indices = new_position_indices
-
 	for sprite in self.sprites:
 		sprite.frame_coords.x += orientation_diff
+	self.calculate_z_indices()
+	

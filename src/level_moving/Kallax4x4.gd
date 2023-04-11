@@ -92,10 +92,10 @@ func rotate_one_step():
 			return
 	var orientation_diff:int= new_orientation-self.current_orientation
 	self.current_orientation = new_orientation
-	print(self.position_indices)
-	print(new_position_indices)
 
 	self.position_indices = new_position_indices
 
 	for sprite in self.sprites:
 		sprite.frame_coords.x += orientation_diff
+
+	self.calculate_z_indices()

@@ -44,27 +44,49 @@ func plant_prop():
 	# 					position_indices[0][2] * self.step_z)
 	parent.spawn_new_prop()
 
+func are_position_indices_occupied():
+	for i in self.position_indices.size():
+		if not parent._can_move(self.position_indices[i]):
+			return true
+	return false
+
 func move(direction,move_instant=false):
 	var new_position_indices:=[]
 	var new_index:=Vector3()
 	for i in self.position_indices.size():
-		new_index= self.position_indices[i]+direction
+		new_index = self.position_indices[i]+direction
 		new_position_indices.append(new_index)
 		if not parent._can_move(new_index):
 			return false
 		
 	self.position_indices = new_position_indices
-	var i:=0
-	for index in self.position_indices:
-		parent.get_z_index(index)
-		var sprite :Sprite= self.sprites[i]
-		sprite.z_index = parent.get_z_index(index)
-		i+=1
-
+	self.calculate_z_indices()
 	#TODO vector dot product
 	if move_instant:
 		var left_bottom_index:Vector3=self._get_left_bottom_position_index()
 		self.position = (left_bottom_index[0]* self.step_x + 
-						 left_bottom_index[1]* self.step_y+
-						 left_bottom_index[2] * self.step_z)
+						 left_bottom_index[1]* self.step_y +
+						 left_bottom_index[2]* self.step_z)
 	return true
+
+func calculate_z_indices():
+	var i:=0
+	for index in self.position_indices:
+		var sprite :Sprite= self.sprites[i]
+		sprite.z_index = parent.get_z_index(index)
+		i+=1
+
+func move_without_collision(direction):
+	#Only used for spawning new props
+	var new_position_indices:=[]
+	var new_index:=Vector3()
+	for i in self.position_indices.size():
+		new_index = self.position_indices[i]+direction
+		new_position_indices.append(new_index)
+
+	self.position_indices = new_position_indices
+
+	var left_bottom_index:Vector3=self._get_left_bottom_position_index()
+	self.position = (left_bottom_index[0]* self.step_x + 
+						left_bottom_index[1]* self.step_y+
+						left_bottom_index[2] * self.step_z)

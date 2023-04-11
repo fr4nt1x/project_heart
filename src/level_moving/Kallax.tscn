@@ -4,6 +4,7 @@
 [ext_resource path="res://src/level_moving/Kallax.gd" type="Script" id=2]
 
 [node name="Kallax" type="Node2D"]
+visible = false
 script = ExtResource( 2 )
 
 [node name="Sprite1" type="Sprite" parent="."]

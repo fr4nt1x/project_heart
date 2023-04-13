@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/level_moving/Carton2.png" type="Texture" id=1]
+[ext_resource path="res://src/level_moving/Carton.gd" type="Script" id=2]
+
+[node name="Carton2" type="Node2D"]
+visible = false
+script = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="."]
+position = Vector2( -64, -192 )
+texture = ExtResource( 1 )
+centered = false

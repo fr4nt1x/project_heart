@@ -21,10 +21,11 @@ var kallax1x2_scene = load("res://src/level_moving/Kallax1x2.tscn")
 var kallax2x2_scene = load("res://src/level_moving/Kallax2x2.tscn")
 var carton1_scene = load("res://src/level_moving/Carton1.tscn")
 var carton2_scene = load("res://src/level_moving/Carton2.tscn")
+var bed_rost_scene = load("res://src/level_moving/BedRost.tscn")
 
-var list_of_props = [kallax_scene,kallax4x4_scene,kallax1x2_scene,kallax2x2_scene,
-					carton1_scene,carton1_scene,carton2_scene,carton2_scene]
-
+#var list_of_props = [kallax_scene,kallax4x4_scene,kallax1x2_scene,kallax2x2_scene,
+#					carton1_scene,carton1_scene,carton2_scene,carton2_scene,bed_rost_scene]
+var list_of_props = [bed_rost_scene]
 func _build_debug_grid():
 	for x in range(size_x):
 		for y in range(size_y):

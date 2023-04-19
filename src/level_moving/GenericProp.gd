@@ -21,7 +21,7 @@ func _process(delta):
 	var left_bottom_index:Vector3=self._get_left_bottom_position_index()
 
 	var goal_position := Vector2(left_bottom_index[0]* self.step_x + 
-						 left_bottom_index[1]* self.step_y+
+						 left_bottom_index[1]* self.step_y +
 						 left_bottom_index[2] * self.step_z)
 	if  (goal_position - self.position).length() >=0.01:
 		self.position = self.position.move_toward(goal_position,delta*drop_speed)

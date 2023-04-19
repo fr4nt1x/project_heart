@@ -4,9 +4,9 @@ extends Node
 # For now the last child
 var current_prop
 var current_prop_index = 0
-const size_x := 8
-const size_y := 8
-const size_z := 10
+const size_x := 5
+const size_y := 6
+const size_z := 8
 const step_x := Vector2(64,0)
 const step_y := Vector2(0,-64)
 const step_z := Vector2(-32,-16)
@@ -23,9 +23,9 @@ var carton1_scene = load("res://src/level_moving/Carton1.tscn")
 var carton2_scene = load("res://src/level_moving/Carton2.tscn")
 var bed_rost_scene = load("res://src/level_moving/BedRost.tscn")
 
-#var list_of_props = [kallax_scene,kallax4x4_scene,kallax1x2_scene,kallax2x2_scene,
-#					carton1_scene,carton1_scene,carton2_scene,carton2_scene,bed_rost_scene]
-var list_of_props = [bed_rost_scene]
+var list_of_props = [kallax_scene,kallax4x4_scene,kallax1x2_scene,kallax2x2_scene,
+					carton1_scene,carton1_scene,carton2_scene,carton2_scene,bed_rost_scene,bed_rost_scene]
+#var list_of_props = [bed_rost_scene]
 func _build_debug_grid():
 	for x in range(size_x):
 		for y in range(size_y):
@@ -69,6 +69,11 @@ func _generate_z_index_matrix():
 
 func _ready():
 	self.spawn_new_prop()
+
+func get_position_from_index(position_index):
+	return (position_index[0]* self.step_x + 
+						 position_index[1]* self.step_y +
+						 position_index[2]* self.step_z)
 
 func _can_move(position_index, collision=true):
 	var can_move:=true

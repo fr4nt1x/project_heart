@@ -1,12 +1,6 @@
 class_name GenericProp
 extends Node2D
 
-# X right
-# Y top
-# Z depth
-const step_x := Vector2(64,0)
-const step_y := Vector2(0,-64)
-const step_z := Vector2(-32,-16)
 export var drop_speed = 1400
 var position_indices := [Vector3(0,0,0)]
 var sprites := []
@@ -20,9 +14,8 @@ func _ready():
 func _process(delta):
 	var left_bottom_index:Vector3=self._get_left_bottom_position_index()
 
-	var goal_position := Vector2(left_bottom_index[0]* self.step_x + 
-						 left_bottom_index[1]* self.step_y +
-						 left_bottom_index[2] * self.step_z)
+	var goal_position := Vector2(parent.get_position_from_index(left_bottom_index))
+
 	if  (goal_position - self.position).length() >=0.01:
 		self.position = self.position.move_toward(goal_position,delta*drop_speed)
 
@@ -39,9 +32,7 @@ func plant_prop():
 
 	for position in self.position_indices:
 		parent.space_occupied_matrix[position[0]][position[1]][position[2]] = true
-	# self.position = (position_indices[0][0]* self.step_x + 
-	# 					position_indices[0][1]* self.step_y+
-	# 					position_indices[0][2] * self.step_z)
+
 	parent.spawn_new_prop()
 
 func are_position_indices_occupied():
@@ -64,9 +55,7 @@ func move(direction,move_instant=false):
 	#TODO vector dot product
 	if move_instant:
 		var left_bottom_index:Vector3=self._get_left_bottom_position_index()
-		self.position = (left_bottom_index[0]* self.step_x + 
-						 left_bottom_index[1]* self.step_y +
-						 left_bottom_index[2]* self.step_z)
+		self.position = parent.get_position_from_index(left_bottom_index)
 	return true
 
 func calculate_z_indices():
@@ -87,6 +76,4 @@ func move_without_collision(direction):
 	self.position_indices = new_position_indices
 
 	var left_bottom_index:Vector3=self._get_left_bottom_position_index()
-	self.position = (left_bottom_index[0]* self.step_x + 
-						left_bottom_index[1]* self.step_y+
-						left_bottom_index[2] * self.step_z)
+	self.position = parent.get_position_from_index(left_bottom_index)

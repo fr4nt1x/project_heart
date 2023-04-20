@@ -7,24 +7,36 @@ extends Node
 # that is to say, another node or script should not access them.
 onready var _pause_menu = $InterfaceLayer/PauseMenu
 onready var _death_counter = $InterfaceLayer/CoinsCounter
-var levels = [ "res://src/level_africa/Level/Africa.tscn",
-			   "res://src/level_disco/Level/Disco.tscn",
+export var interlude_duration = 5
+
+var interludeScene = "res://src/common/Interlude.tscn"
+var interlude_resource
+var levels = [ "res://src/level_disco/Level/Disco.tscn",
+			   "res://src/level_africa/Level/Africa.tscn",   
 			   "res://src/level_moving/Moving.tscn"]
 			
-var players = [ "/root/Game/Africa/Level/PlayerAfrica",
-				"/root/Game/Disco/Player",
+var players = [ "/root/Game/Disco/Player",
+				"/root/Game/Africa/Level/PlayerAfrica",
 				"/root/Game/Moving/PlayerMoving"]
-var level_counter = 2 # should be 0, but can be incremented for debugging
+var level_counter = 0 # should be 0, but can be incremented for debugging
 var current_level_instance
-
+var current_level_resource
+var current_interlude_index = 0
+var interlude_strings = ["Chapter I:\n\nDisco",
+						 "Chapter II:\n\nAfrica",
+						 "Chapter III:\n\nMoving Day"]
+						
 func _init():
 	OS.min_window_size = OS.window_size
 	OS.max_window_size = OS.get_screen_size()
-	var level_resource = load(levels[level_counter])
-	current_level_instance  = level_resource.instance()
-	self.add_child(current_level_instance)
+	current_level_resource = load(levels[level_counter])
+	interlude_resource = load(interludeScene)
 
 func _ready():
+	yield(self.play_interlude(), "completed")
+	current_level_instance  = current_level_resource.instance()
+	self.add_child(current_level_instance)
+	
 	_death_counter.connect_player(players[level_counter])
 	
 func _notification(what):
@@ -34,10 +46,21 @@ func _notification(what):
 			$Black/SplitContainer/ViewportContainer1.free()
 			$Black.queue_free()
 
+func play_interlude():
+	_death_counter.visible=false
+	var interlude_instance = interlude_resource.instance()
+	self.add_child(interlude_instance)
+	interlude_instance.display_text(interlude_strings[current_interlude_index])
+	current_interlude_index+=1
+	yield(get_tree().create_timer(interlude_duration), "timeout")
+	self.remove_child(interlude_instance)
+	interlude_instance.call_deferred("free")
+	_death_counter.visible=true
 
 func next_level():
 	self.remove_child(current_level_instance)
 	current_level_instance.call_deferred("free")
+	yield(self.play_interlude(), "completed")
 	level_counter=level_counter+1
 	_death_counter.reset()
 	var level_resource = load(levels[level_counter])

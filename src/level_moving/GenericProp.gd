@@ -26,7 +26,7 @@ func _get_left_bottom_position_index():
 	return sorted[0]
 
 func plant_prop():
-	#TODO Move down
+	parent.emit_prop_down()
 	while (self.move(Vector3(0,-1,0),false)):
 		pass
 

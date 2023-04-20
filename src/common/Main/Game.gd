@@ -14,7 +14,7 @@ var levels = [ "res://src/level_africa/Level/Africa.tscn",
 var players = [ "/root/Game/Africa/Level/PlayerAfrica",
 				"/root/Game/Disco/Player",
 				"/root/Game/Moving/PlayerMoving"]
-var level_counter = 0 # should be 0, but can be incremented for debugging
+var level_counter = 2 # should be 0, but can be incremented for debugging
 var current_level_instance
 
 func _init():

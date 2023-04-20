@@ -19,6 +19,8 @@ func connect_player(player_string):
 		_player_path.connect("reset_player", self, "_increment")
 	if "Disco" in player_string:
 		_player_path.connect("perfect_hit", self, "_increment")
+	if "Moving" in player_string:
+		_player_path.connect("prop_down", self, "_increment")
 		
 func reset():
 	number_resets=0

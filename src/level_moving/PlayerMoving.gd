@@ -1,6 +1,9 @@
 class_name PlayerMoving
 extends Node
 
+signal game_over()
+signal prop_down()
+
 # For now the last child
 var current_prop
 var current_prop_index = 0
@@ -109,9 +112,10 @@ func spawn_new_prop():
 		current_prop.move_without_collision(Vector3(1,0,0))
 
 	if not space_found:
+		current_prop.visible = false
 		current_prop.queue_free()
 		game_over=true
-		print("Game Over!")
+		self.emit_signal("game_over")	
 		return
 	current_prop.calculate_z_indices()
 	current_prop.visible = true
@@ -124,6 +128,13 @@ func spawn_new_prop():
 		current_prop_index = 0
 		randomize()
 		list_of_props.shuffle()
+
+func emit_prop_down():
+	self.emit_signal("prop_down")
+
+func set_all_children_invisible():
+	for child in self.get_children():
+		child.visible=false
 
 func can_move_in_z(position_indices):
 	for x in position_indices:

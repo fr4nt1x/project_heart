@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/moving_win.ogg-3dd5e238d662be074b44c9229dce08f7.oggstr"
+
+[deps]
+
+source_file="res://assets/level_moving/moving_win.ogg"
+dest_files=[ "res://.import/moving_win.ogg-3dd5e238d662be074b44c9229dce08f7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

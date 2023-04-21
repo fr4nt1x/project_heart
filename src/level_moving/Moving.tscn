@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/level_moving/PlayerMoving.gd" type="Script" id=1]
 [ext_resource path="res://src/level_moving/Transporter.gd" type="Script" id=2]
 [ext_resource path="res://assets/level_moving/transporter_background.png" type="Texture" id=3]
 [ext_resource path="res://assets/level_moving/transporter_foreground.png" type="Texture" id=4]
+[ext_resource path="res://assets/level_moving/moving_theme.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/level_moving/moving_win.ogg" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "finish"
@@ -80,5 +82,14 @@ hframes = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transporter"]
 anims/finish = SubResource( 1 )
+
+[node name="ThemeAudio" type="AudioStreamPlayer2D" parent="Transporter"]
+position = Vector2( 216, -232 )
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="WinAudio" type="AudioStreamPlayer2D" parent="Transporter"]
+stream = ExtResource( 6 )
+volume_db = -20.0
 
 [connection signal="game_over" from="PlayerMoving" to="Transporter" method="_on_PlayerMoving_game_over"]

@@ -23,5 +23,6 @@ motion/sync_to_physics = false
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -1472, 144 )
 stream = ExtResource( 4 )
+volume_db = -20.0
 autoplay = true
 attenuation = 10.0

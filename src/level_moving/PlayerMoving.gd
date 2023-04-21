@@ -28,7 +28,7 @@ var bed_rost_scene = load("res://src/level_moving/BedRost.tscn")
 
 var list_of_props = [kallax_scene,kallax4x4_scene,kallax1x2_scene,kallax2x2_scene,
 					carton1_scene,carton1_scene,carton2_scene,carton2_scene,bed_rost_scene,bed_rost_scene]
-#var list_of_props = [bed_rost_scene]
+# var list_of_props = [kallax_scene]
 func _build_debug_grid():
 	for x in range(size_x):
 		for y in range(size_y):
@@ -90,12 +90,12 @@ func _can_move(position_index, collision=true):
 	elif collision and self.space_occupied_matrix[position_index[0]][position_index[1]][position_index[2]]:
 		can_move=false
 	
-	if not can_move:
-		#TODO possibly remove this indicator creating
-		var box = box_scene.instance()
-		box.position = Vector2(x*step_x)+Vector2(y*step_y)+Vector2(z*step_z)
-		box.z_index = self.get_z_index(Vector3(clamp(x,0,size_x-1),clamp(y,0,size_y-1),clamp(z,0,size_z-1)))
-		add_child(box)
+	# if not can_move:
+	# 	#TODO possibly remove this indicator creating
+	# 	var box = box_scene.instance()
+	# 	box.position = Vector2(x*step_x)+Vector2(y*step_y)+Vector2(z*step_z)
+	# 	box.z_index = self.get_z_index(Vector3(clamp(x,0,size_x-1),clamp(y,0,size_y-1),clamp(z,0,size_z-1)))
+	# 	add_child(box)
 	return can_move
 
 func get_z_index(position_index):

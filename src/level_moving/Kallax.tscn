@@ -4,32 +4,31 @@
 [ext_resource path="res://src/level_moving/Kallax.gd" type="Script" id=2]
 
 [node name="Kallax" type="Node2D"]
-visible = false
 script = ExtResource( 2 )
 
 [node name="Sprite1" type="Sprite" parent="."]
-position = Vector2( 96, -160 )
+position = Vector2( 64, -160 )
 texture = ExtResource( 1 )
-hframes = 2
+hframes = 3
 vframes = 4
 
 [node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 96, -160 )
+position = Vector2( 64, -160 )
 texture = ExtResource( 1 )
-hframes = 2
+hframes = 3
 vframes = 4
-frame = 2
+frame = 3
 
 [node name="Sprite3" type="Sprite" parent="."]
-position = Vector2( 96, -160 )
+position = Vector2( 64, -160 )
 texture = ExtResource( 1 )
-hframes = 2
-vframes = 4
-frame = 4
-
-[node name="Sprite4" type="Sprite" parent="."]
-position = Vector2( 96, -160 )
-texture = ExtResource( 1 )
-hframes = 2
+hframes = 3
 vframes = 4
 frame = 6
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 64, -160 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 4
+frame = 9

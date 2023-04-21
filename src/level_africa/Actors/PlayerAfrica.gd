@@ -151,6 +151,7 @@ func get_new_animation(is_shooting = false):
 
 
 func speak(input):
+	speechLabel.visible=true
 	speechLabel.clear()
 	get_tree().paused = true
 	
@@ -159,3 +160,4 @@ func speak(input):
 		yield(get_tree().create_timer(2), "timeout")
 	speechLabel.clear()
 	get_tree().paused = false
+	speechLabel.visible=false

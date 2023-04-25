@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/level_africa/Objects/Steak.gd" type="Script" id=1]
 [ext_resource path="res://assets/level_africa/art/coin/steak.png" type="Texture" id=2]
-[ext_resource path="res://assets/level_africa/art/audio/sfx/coin_pickup.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 36.0139
@@ -78,9 +77,6 @@ vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
-
-[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "rotating"

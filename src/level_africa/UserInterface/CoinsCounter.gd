@@ -3,13 +3,11 @@ extends Panel
 var number_resets = 0
 
 onready var coins_label = $Label
-
-
+onready var animation_player = $AnimationPlayer
+onready var sprite = $Sprite
 func _ready():
 	coins_label.set_text(str(number_resets))
 	# Static types are necessary here to avoid warnings.
-	var anim_sprite: AnimatedSprite = $AnimatedSprite
-	anim_sprite.play()
 
 
 func connect_player(player_string):
@@ -17,10 +15,14 @@ func connect_player(player_string):
 	var _player_path = get_node(player_string)
 	if "Africa" in player_string:
 		_player_path.connect("reset_player", self, "_increment")
-	if "Disco" in player_string:
+		animation_player.play("level_africa")
+	elif "Disco" in player_string:
 		_player_path.connect("perfect_hit", self, "_increment")
-	if "Moving" in player_string:
+		animation_player.play("level_disco")		
+	elif "Moving" in player_string:
 		_player_path.connect("prop_down", self, "_increment")
+		animation_player.play("level_moving")
+		
 		
 func reset():
 	number_resets=0

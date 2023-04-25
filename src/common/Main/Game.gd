@@ -12,7 +12,7 @@ export var interlude_duration = 5
 var interludeScene = "res://src/common/Interlude.tscn"
 var interlude_resource
 var levels = [ "res://src/level_tutorial/Tutorial.tscn",
-		"res://src/level_disco/Level/Disco.tscn",
+			   "res://src/level_disco/Level/Disco.tscn",
 			   "res://src/level_africa/Level/Africa.tscn",   
 			   "res://src/level_moving/Moving.tscn"]
 			

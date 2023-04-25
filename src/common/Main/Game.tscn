@@ -14,5 +14,4 @@ layer = 100
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource( 2 )]
 
 [node name="CoinsCounter" parent="InterfaceLayer" instance=ExtResource( 1 )]
-margin_right = 105.0
 margin_bottom = 50.0

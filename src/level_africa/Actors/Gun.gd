@@ -8,7 +8,6 @@ const BULLET_VELOCITY_X = 200.0
 const BULLET_VELOCITY_Y = -200.0
 const Bullet = preload("res://src/level_africa/Objects/Bullet.tscn")
 
-onready var sound_shoot = $Shoot
 onready var timer = $Cooldown
 
 
@@ -22,6 +21,5 @@ func shoot(direction = 1):
 	
 	bullet.set_as_toplevel(true)
 	add_child(bullet)
-	sound_shoot.play()
 	timer.start()
 	return true

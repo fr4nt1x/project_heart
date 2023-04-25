@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/level_moving/PlayerMoving.gd" type="Script" id=1]
 [ext_resource path="res://src/level_moving/Transporter.gd" type="Script" id=2]
@@ -6,6 +6,21 @@
 [ext_resource path="res://assets/level_moving/transporter_foreground.png" type="Texture" id=4]
 [ext_resource path="res://assets/level_moving/moving_theme.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/level_moving/moving_win.ogg" type="AudioStream" id=6]
+
+[sub_resource type="StyleBoxFlat" id=2]
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id=3]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=4]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="Animation" id=1]
 resource_name = "finish"
@@ -53,6 +68,56 @@ tracks/2/keys = {
 
 [node name="PlayerMoving" type="Node" parent="."]
 script = ExtResource( 1 )
+
+[node name="Keyboard" type="Control" parent="PlayerMoving"]
+margin_left = 336.0
+margin_top = -40.0
+margin_right = 688.0
+margin_bottom = 40.0
+
+[node name="Ctrl" type="Label" parent="PlayerMoving/Keyboard"]
+margin_left = 8.0
+margin_top = 24.0
+margin_right = 48.0
+margin_bottom = 56.0
+custom_styles/normal = SubResource( 2 )
+text = "Ctrl"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Rotate" type="Label" parent="PlayerMoving/Keyboard"]
+margin_left = 240.0
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 56.0
+custom_styles/normal = SubResource( 3 )
+text = "Rotate"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Shift" type="Label" parent="PlayerMoving/Keyboard"]
+margin_left = 168.0
+margin_top = 24.0
+margin_right = 232.0
+margin_bottom = 56.0
+custom_styles/normal = SubResource( 2 )
+text = "Shift"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Push" type="Label" parent="PlayerMoving/Keyboard"]
+margin_left = 56.0
+margin_top = 24.0
+margin_right = 136.0
+margin_bottom = 56.0
+custom_styles/normal = SubResource( 4 )
+text = "Push"
+align = 1
+valign = 1
+uppercase = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 216, -232 )

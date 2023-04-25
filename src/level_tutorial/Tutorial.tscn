@@ -68,8 +68,7 @@ color = Color( 0, 0, 0, 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
-hframes = 2
-frame = 1
+hframes = 3
 
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource( 3 )

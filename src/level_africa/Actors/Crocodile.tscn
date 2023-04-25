@@ -136,9 +136,9 @@ cast_to = Vector2( 10, 0 )
 collision_mask = 24
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -16 )
 texture = ExtResource( 2 )
-hframes = 2
-vframes = 4
+hframes = 8
 region_rect = Rect2( 0, 0, 300, 30 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

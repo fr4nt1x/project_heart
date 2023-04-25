@@ -16,6 +16,7 @@ corner_radius_bottom_left = 20
 z_index = 100
 z_as_relative = false
 script = ExtResource( 1 )
+wait_duration = 3
 
 [node name="Speech" type="RichTextLabel" parent="."]
 visible = false

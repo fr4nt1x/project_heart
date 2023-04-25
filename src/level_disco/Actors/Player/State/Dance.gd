@@ -5,6 +5,7 @@ extends PlayerState
 func enter(_msg := {}) -> void:
 	player.velocity = Vector2.ZERO
 	player.play_animation("idle")
+	player.put_conductor_under_player()
 	player.jump_cooldown.stop()
 	self.call_deferred("transition")
 	
@@ -12,6 +13,7 @@ func enter(_msg := {}) -> void:
 func transition():
 	yield(get_tree().create_timer(player.dancing_time), "timeout")
 	player.time_to_leave_disco()
+	player.reset_conductor()
 	state_machine.transition_to("Speak")
 	
 func physics_update(_delta: float) -> void:

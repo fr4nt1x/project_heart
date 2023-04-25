@@ -47,7 +47,10 @@ func _physics_process(_delta):
 	elif wall_detector_right.is_colliding():
 		_velocity.x = -speed.x
 	# Dont update velocities movement is fixed after start
-	move_and_collide(_velocity*_delta)
+	if not is_feasting():
+		move_and_collide(_velocity*_delta)
+	else:
+		move_and_collide(Vector2(0,0))
 	# We flip the Sprite depending on which way the enemy is moving.
 	if _velocity.x > 0:
 		sprite.scale.x = 1

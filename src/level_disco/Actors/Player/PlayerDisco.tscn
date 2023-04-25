@@ -278,6 +278,9 @@ margin_top = -117.333
 margin_bottom = -61.3333
 custom_styles/normal = SubResource( 17 )
 
+[node name="ConductorDancing" type="Position2D" parent="."]
+position = Vector2( 0, 42.6667 )
+
 [connection signal="perfect_hit" from="." to="." method="_on_PlayerDisco_perfect_hit"]
 
 [editable path="SpeechNode"]

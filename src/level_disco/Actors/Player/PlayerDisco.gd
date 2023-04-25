@@ -11,6 +11,8 @@ signal perfect_hit()
 onready var platform_detector = $PlatformDetector
 onready var animation_player = $AnimationPlayer
 onready var conductor = $Conductor
+onready var conductor_position = conductor.position
+onready var conductor_dancing= $ConductorDancing
 onready var dash_cooldown = $DashCooldown
 onready var jump_cooldown = $JumpCooldown
 onready var sprite = $Sprite
@@ -30,7 +32,7 @@ const fixing_lines = [["One down three to go!"],
 const fixing_lines_no_dj = [["Hmm this seems broken I better plug it in."],
 					["Another one. Lets plug this one in too."],
 					["Everythings unplugged, I better ask the DJ about this."]]
-const lines_leaving = ["Okay I think I will go home now! Bye everyone!"]					
+const lines_leaving = ["Okay I think I will go home now! Bye everyone!"]
 const dash_duration = 0.1
 const snap_vector = Vector2.DOWN*20.0
 
@@ -92,6 +94,11 @@ func play_jump_sound():
 func everything_fixed ():
 	return things_fix == number_of_fixed_things
 
+func put_conductor_under_player():
+	conductor.position = conductor_dancing.position
+
+func reset_conductor():
+	conductor.position = conductor_position
 
 func _on_PlayerDisco_perfect_hit():
 	stop_cooldowns()

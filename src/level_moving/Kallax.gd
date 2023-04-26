@@ -49,4 +49,4 @@ func rotate_one_step():
 	for sprite in self.sprites:
 		sprite.frame_coords.x += orientation_diff
 	self.calculate_z_indices()
-	
+	self.redraw_shadows()

@@ -11,6 +11,31 @@ onready var parent:PlayerMoving=get_node("../")
 func _ready():
 	pass
 
+func spawn_shadow_projected_down(current_index):
+	var shadow_index =  current_index - Vector3(0,1,0)
+	var distance_to_shadow = 0
+	while (shadow_index[1] >= 0 ):
+		if parent.space_occupied_matrix[shadow_index[0]][shadow_index[1]][shadow_index[2]]:
+			break
+		shadow_index -=  Vector3(0,1,0)
+		distance_to_shadow +=1
+
+	shadow_index += Vector3(0,1,0)
+	if distance_to_shadow>0:
+		parent.spawn_shadow_at_index(shadow_index, distance_to_shadow)
+
+func redraw_shadows():
+	parent.remove_shadows()
+	var current_index
+	var left_bottom_index:Vector3=self._get_left_bottom_position_index()
+	if left_bottom_index[1] == 0:
+		#No shadow for prop at the bottom
+		return
+	for i in self.position_indices.size():
+		current_index = self.position_indices[i]
+		if current_index[1] <= left_bottom_index[1]:
+			spawn_shadow_projected_down(current_index)
+
 func _process(delta):
 	var left_bottom_index:Vector3=self._get_left_bottom_position_index()
 
@@ -56,6 +81,7 @@ func move(direction,move_instant=false):
 	if move_instant:
 		var left_bottom_index:Vector3=self._get_left_bottom_position_index()
 		self.position = parent.get_position_from_index(left_bottom_index)
+	redraw_shadows()
 	return true
 
 func calculate_z_indices():
@@ -77,3 +103,5 @@ func move_without_collision(direction):
 
 	var left_bottom_index:Vector3=self._get_left_bottom_position_index()
 	self.position = parent.get_position_from_index(left_bottom_index)
+
+	self.redraw_shadows()

@@ -15,8 +15,10 @@ const step_y := Vector2(0,-64)
 const step_z := Vector2(-32,-16)
 var game_over = false
 var space_occupied_matrix:=[]
+var shadows:=[]
 var z_index_matrix:=[]
 var box_scene = load("res://src/level_moving/Box.tscn")	
+var shadow_scene = load("res://src/level_moving/shadow.tscn")	
 var box_debug = load("res://src/level_moving/Box_debug.tscn")	
 var kallax_scene = load("res://src/level_moving/Kallax.tscn")
 var kallax4x4_scene = load("res://src/level_moving/Kallax4x4.tscn")
@@ -97,6 +99,30 @@ func _can_move(position_index, collision=true):
 	# 	box.z_index = self.get_z_index(Vector3(clamp(x,0,size_x-1),clamp(y,0,size_y-1),clamp(z,0,size_z-1)))
 	# 	add_child(box)
 	return can_move
+
+func spawn_shadow_at_index(index, distance):
+	if distance==0 or distance >= size_y:
+		print("Something went wrong with shadow calculation. Do not spawn a shadow.")
+	var x= index[0]
+	var y= index[1]
+	var z= index[2]
+	
+	var min_alpha = 0.2
+	var max_alpha = 1.0
+	var stepsize_alpha = (max_alpha - min_alpha)/(size_y-1)
+	var alpha_color = max_alpha - distance * stepsize_alpha
+
+	var shadow = shadow_scene.instance()
+	shadow.position = Vector2(x*step_x)+Vector2(y*step_y)+Vector2(z*step_z)
+	shadow.z_index = self.get_z_index(Vector3(clamp(x,0,size_x-1),clamp(y,0,size_y-1),clamp(z,0,size_z-1)))
+	shadow.alpha = alpha_color
+	add_child(shadow)
+	self.shadows.append(shadow)
+
+func remove_shadows():
+	for i in self.shadows.size():
+		self.shadows[i].queue_free()
+	self.shadows = []
 
 func get_z_index(position_index):
 	return self.z_index_matrix[position_index[0]][position_index[1]][position_index[2]]

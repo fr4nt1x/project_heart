@@ -18,4 +18,4 @@ func _on_Box_body_entered(body):
 	if body.name=="Player":
 		animationPlayer.play("sound")
 		body.plug_in_objects()
-		audio_player.volume_db = -20
+		audio_player.volume_db = -15

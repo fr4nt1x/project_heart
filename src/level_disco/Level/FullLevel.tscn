@@ -24,7 +24,7 @@ texture = ExtResource( 4 )
 position = Vector2( -879, -75 )
 
 [node name="Box2" parent="." instance=ExtResource( 1 )]
-position = Vector2( -148, -152 )
+position = Vector2( -148, -149 )
 
 [node name="Ceiling" type="CollisionPolygon2D" parent="."]
 position = Vector2( 1, -100 )

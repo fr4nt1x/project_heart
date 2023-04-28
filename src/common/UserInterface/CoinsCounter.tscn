@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/theme/user_interface.tres" type="Theme" id=1]
-[ext_resource path="res://src/level_africa/UserInterface/CoinsCounter.gd" type="Script" id=3]
+[ext_resource path="res://src/common/UserInterface/CoinsCounter.gd" type="Script" id=2]
 [ext_resource path="res://assets/general/Counter.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -66,7 +66,7 @@ margin_bottom = 52.0
 rect_min_size = Vector2( 100, 45 )
 theme = ExtResource( 1 )
 custom_styles/panel = SubResource( 1 )
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0

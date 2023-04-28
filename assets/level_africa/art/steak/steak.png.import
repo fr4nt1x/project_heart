@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/coin.png-f5d9f3d2aeb13b7ef3e7828961b2b9ef.stex"
+path="res://.import/steak.png-db8d22aa5c2340a4d06da56b4bb6360b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/level_africa/art/coin/coin.png"
-dest_files=[ "res://.import/coin.png-f5d9f3d2aeb13b7ef3e7828961b2b9ef.stex" ]
+source_file="res://assets/level_africa/art/steak/steak.png"
+dest_files=[ "res://.import/steak.png-db8d22aa5c2340a4d06da56b4bb6360b.stex" ]
 
 [params]
 

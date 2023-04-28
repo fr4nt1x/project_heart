@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/level_africa/UserInterface/CoinsCounter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/level_africa/UserInterface/PauseMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/common/UserInterface/CoinsCounter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/common/UserInterface/PauseMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/common/Main/Game.gd" type="Script" id=3]
 
 [node name="Game" type="Node"]

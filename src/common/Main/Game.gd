@@ -22,7 +22,7 @@ var players = [ "/root/Main/Game/Tutorial/Player",
 				"/root/Main/Game/Disco/Player",
 				"/root/Main/Game/Africa/Level/PlayerAfrica",
 				"/root/Main/Game/Moving/PlayerMoving"]
-var level_counter = 1 # should be 0, but can be incremented for debugging
+var level_counter = 0 # should be 0, but can be incremented for debugging
 var current_level_instance
 var current_level_resource
 var current_interlude_index = 0

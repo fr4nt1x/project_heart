@@ -12,7 +12,7 @@ func _ready():
 
 func _process(_delta):
 	if can_quit and Input.is_action_just_pressed("shoot"):
-		var game = get_node("/root/Game")
+		var game = get_node("/root/Main/Game")
 		#without deferred call errors exist
 		game.call_deferred("next_level")
 

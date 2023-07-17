@@ -1,5 +1,6 @@
 extends Control
 
+signal new_game()
 
 export(Vector2) var _start_position = Vector2(0, -20)
 export(Vector2) var _end_position = Vector2.ZERO
@@ -42,17 +43,12 @@ func open():
 			Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
 
-
-func _on_ResumeButton_pressed():
-	if not tween.is_active():
-		close()
-
-
-func _on_QuitButton_pressed():
-	scene_root.notification(NOTIFICATION_WM_QUIT_REQUEST)
-	get_tree().quit()
-
-
+		
 func _on_Tween_all_completed():
 	if modulate.a < 0.5:
 		hide()
+
+
+func _on_RestartButton_pressed():
+	if not tween.is_active():
+		self.emit_signal("new_game")

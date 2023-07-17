@@ -5,9 +5,11 @@ extends Node
 
 # The "_" prefix is a convention to indicate that variables are private,
 # that is to say, another node or script should not access them.
-onready var _pause_menu = $InterfaceLayer/PauseMenu
+onready var pause_menu = $InterfaceLayer/PauseMenu
+onready var speedrun_timer = $InterfaceLayer/SpeedrunTimer
 onready var _points_counter = $InterfaceLayer/CoinsCounter
 export var interlude_duration = 5
+var player_name := "42"
 
 var interludeScene = "res://src/common/Interlude.tscn"
 var interlude_resource
@@ -16,11 +18,11 @@ var levels = [ "res://src/level_tutorial/Tutorial.tscn",
 			   "res://src/level_africa/Level/Africa.tscn",   
 			   "res://src/level_moving/Moving.tscn"]
 			
-var players = [ "/root/Game/Tutorial/Player",
-				"/root/Game/Disco/Player",
-				"/root/Game/Africa/Level/PlayerAfrica",
-				"/root/Game/Moving/PlayerMoving"]
-var level_counter = 0 # should be 0, but can be incremented for debugging
+var players = [ "/root/Main/Game/Tutorial/Player",
+				"/root/Main/Game/Disco/Player",
+				"/root/Main/Game/Africa/Level/PlayerAfrica",
+				"/root/Main/Game/Moving/PlayerMoving"]
+var level_counter = 1 # should be 0, but can be incremented for debugging
 var current_level_instance
 var current_level_resource
 var current_interlude_index = 0
@@ -87,21 +89,29 @@ func _unhandled_input(event):
 	# To see the Pause Mode of any node, select the node and you'll see "Pause Mode" near the bottom
 	# of the Inspector under "Node" fields.
 	elif event.is_action_pressed("toggle_pause"):
-		var tree = get_tree()
-		tree.paused = not tree.paused
-		if tree.paused:
-			_pause_menu.open()
-		else:
-			_pause_menu.close()
+		self.pause_pressed()
 		get_tree().set_input_as_handled()
 
-	elif event.is_action_pressed("splitscreen"):
-		if name == "Splitscreen":
-			# We need to clean up a little bit first to avoid Viewport errors.
-			$Black/SplitContainer/ViewportContainer1.free()
-			$Black.queue_free()
-			# warning-ignore:return_value_discarded
-			get_tree().change_scene("res://src/Main/Game.tscn")
-		else:
-			# warning-ignore:return_value_discarded
-			get_tree().change_scene("res://src/Main/Splitscreen.tscn")
+func pause_pressed():
+	var tree = get_tree()
+	tree.paused = not tree.paused
+	if tree.paused:
+		pause_menu.open()
+	else:
+		pause_menu.close()
+
+func end_game():
+	var highscore_path = "user://highscores.dat"
+	var result_time = speedrun_timer.stop_timer()
+	var file := File.new()
+	var flag := File.READ_WRITE
+	
+	file.open(highscore_path, flag)
+	if (not file.file_exists(highscore_path)):
+		flag=File.WRITE
+		file.close()
+
+	file.open(highscore_path, flag)
+	file.seek_end(0)
+	file.store_line(result_time + ","+player_name)
+	file.close()

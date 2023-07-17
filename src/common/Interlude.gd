@@ -1,5 +1,4 @@
 extends Node2D
-signal interlude_finished()
 onready var labelInstance = $Label
 var percent_visible= 0.0
 var pc: float

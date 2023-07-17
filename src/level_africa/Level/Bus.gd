@@ -13,7 +13,7 @@ func _ready():
 #	pass
 
 func animation_finished():
-	var game = get_node("/root/Game")
+	var game = get_node("/root/Main/Game")
 	#without deferred call errors exist
 	game.call_deferred("next_level")
 

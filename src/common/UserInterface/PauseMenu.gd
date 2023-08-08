@@ -54,4 +54,5 @@ func _on_ResumeButton_pressed():
 		
 func _on_RestartButton_pressed():
 	if not tween.is_active():
+		close()
 		self.emit_signal("new_game")

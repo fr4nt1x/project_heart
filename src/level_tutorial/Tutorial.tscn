@@ -55,7 +55,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="StartText" type="Label" parent="Player/NodeKeyboard"]
-self_modulate = Color( 0.602585, 0.602585, 0.602585, 1 )
+self_modulate = Color( 0.143743, 0.143743, 0.143743, 1 )
 margin_left = 440.0
 margin_top = 192.0
 margin_right = 632.0

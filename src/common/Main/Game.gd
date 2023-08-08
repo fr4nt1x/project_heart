@@ -10,7 +10,7 @@ onready var speedrun_timer = $InterfaceLayer/SpeedrunTimer
 onready var _points_counter = $InterfaceLayer/CoinsCounter
 export var interlude_duration = 5
 var player_name := "42"
-
+var pointsLevelArray := [0,0,0,0]
 var interludeScene = "res://src/common/Interlude.tscn"
 var interlude_resource
 var levels = [ "res://src/level_tutorial/Tutorial.tscn",
@@ -50,6 +50,9 @@ func _notification(what):
 			$Black.queue_free()
 
 func play_interlude():
+	if current_interlude_index ==0:
+		speedrun_timer.start_timer()
+	
 	_points_counter.visible=false
 	var interlude_instance = interlude_resource.instance()
 	self.add_child(interlude_instance)
@@ -64,6 +67,7 @@ func next_level():
 	self.remove_child(current_level_instance)
 	current_level_instance.call_deferred("free")
 	yield(self.play_interlude(), "completed")
+	pointsLevelArray[level_counter] = _points_counter.number_resets
 	level_counter=level_counter+1
 	_points_counter.reset()
 	var level_resource = load(levels[level_counter])
@@ -100,8 +104,15 @@ func pause_pressed():
 	else:
 		pause_menu.close()
 
+func get_points_string():
+	var res:=""
+	for i in pointsLevelArray:
+		res = res + ",%04d" % [i]
+	return res
+
 func end_game():
 	var highscore_path = "user://highscores.dat"
+	pointsLevelArray[level_counter] = _points_counter.number_resets
 	var result_time = speedrun_timer.stop_timer()
 	var file := File.new()
 	var flag := File.READ_WRITE
@@ -113,5 +124,5 @@ func end_game():
 
 	file.open(highscore_path, flag)
 	file.seek_end(0)
-	file.store_line(result_time + ","+player_name)
+	file.store_line(result_time + "," +player_name+ get_points_string())
 	file.close()

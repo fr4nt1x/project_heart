@@ -9,6 +9,8 @@ var running := false
 
 func _ready():
 	timer_label.set_text(_format_seconds(0.0))
+
+func start_timer():
 	running=true
 
 func _process(delta):
@@ -29,5 +31,4 @@ func _format_seconds(time : float) -> String:
 
 func stop_timer():
 	running = false
-	print(time_elapsed)
 	return (_format_seconds(time_elapsed))

@@ -5,6 +5,7 @@ var number_resets = 0
 onready var coins_label = $Label
 onready var animation_player = $AnimationPlayer
 onready var sprite = $Sprite
+
 func _ready():
 	coins_label.set_text(str(number_resets))
 	# Static types are necessary here to avoid warnings.

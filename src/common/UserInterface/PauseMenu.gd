@@ -48,7 +48,10 @@ func _on_Tween_all_completed():
 	if modulate.a < 0.5:
 		hide()
 
-
+func _on_ResumeButton_pressed():
+	if not tween.is_active():
+		close()
+		
 func _on_RestartButton_pressed():
 	if not tween.is_active():
 		self.emit_signal("new_game")

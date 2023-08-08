@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/general/Keys.png" type="Texture" id=1]
+[ext_resource path="res://assets/general/droid-sans/DroidSans.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/general/droid-sans/DroidSans-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/level_tutorial/Player.gd" type="Script" id=3]
 
@@ -22,38 +22,20 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 
-[sub_resource type="StyleBoxFlat" id=8]
-
-[sub_resource type="StyleBoxFlat" id=9]
-
-[sub_resource type="Animation" id=4]
-resource_name = "default"
-length = 8.0
+[sub_resource type="Animation" id=8]
+resource_name = "Binking"
+loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("NodeKeyboard/StartText:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 5 ),
+"times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("Player")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 4.9 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "allow_quit"
-} ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
 [node name="Tutorial" type="Node2D"]
@@ -65,39 +47,131 @@ margin_right = 1128.0
 margin_bottom = 656.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-centered = false
-hframes = 3
-
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
-[node name="Ctrl" type="Label" parent="Player"]
-margin_left = 280.0
-margin_top = 224.0
-margin_right = 584.0
-margin_bottom = 280.0
+[node name="NodeKeyboard" type="Control" parent="Player"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="StartText" type="Label" parent="Player/NodeKeyboard"]
+self_modulate = Color( 0.602585, 0.602585, 0.602585, 1 )
+margin_left = 440.0
+margin_top = 192.0
+margin_right = 632.0
+margin_bottom = 279.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 5 )
+text = "Press Dash 
+to start."
+align = 1
+valign = 1
+
+[node name="TextGroupControls" type="Control" parent="Player/NodeKeyboard"]
+margin_left = -72.0
+margin_top = 48.0
+margin_right = 544.0
+margin_bottom = 512.0
+rect_scale = Vector2( 0.7, 0.7 )
+
+[node name="Ctrl" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+margin_left = 272.0
+margin_top = 232.0
+margin_right = 571.0
+margin_bottom = 274.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
 custom_styles/normal = SubResource( 5 )
 text = "Throw/Dash/Push"
 
-[node name="Arrows" type="Label" parent="Player"]
-margin_left = 368.0
-margin_top = 120.0
-margin_right = 464.0
-margin_bottom = 168.0
+[node name="CtrlKey" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+margin_left = 80.0
+margin_top = 216.0
+margin_right = 168.0
+margin_bottom = 288.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 5 )
+text = "CTRL"
+align = 1
+valign = 1
+
+[node name="ArrowUp" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+margin_left = 96.0
+margin_top = 56.0
+margin_right = 144.0
+margin_bottom = 104.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 5 )
+text = "^"
+align = 1
+valign = 1
+
+[node name="ArrowDown" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+margin_left = 96.0
+margin_top = 128.0
+margin_right = 144.0
+margin_bottom = 176.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 5 )
+text = "v"
+align = 1
+valign = 1
+
+[node name="ArrowLeft" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+margin_left = 24.0
+margin_top = 128.0
+margin_right = 72.0
+margin_bottom = 176.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 5 )
+text = "<"
+align = 1
+valign = 1
+
+[node name="ArrowRight" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+margin_left = 168.0
+margin_top = 128.0
+margin_right = 216.0
+margin_bottom = 176.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 5 )
+text = ">"
+align = 1
+valign = 1
+
+[node name="ShiftKey" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+margin_left = 40.0
+margin_top = 344.0
+margin_right = 224.0
+margin_bottom = 416.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 5 )
+text = "Shift"
+align = 1
+valign = 1
+
+[node name="Arrows" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+margin_left = 272.0
+margin_top = 112.0
+margin_right = 571.0
+margin_bottom = 154.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 custom_styles/normal = SubResource( 6 )
 text = "Move"
 
-[node name="Shift" type="Label" parent="Player"]
-margin_left = 280.0
-margin_top = 312.0
-margin_right = 576.0
-margin_bottom = 448.0
+[node name="Shift" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+margin_left = 272.0
+margin_top = 320.0
+margin_right = 580.0
+margin_bottom = 452.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 3 )
 custom_styles/normal = SubResource( 7 )
@@ -105,28 +179,41 @@ text = "         Rotate
 	       only used 
   during Chaper III"
 
-[node name="Quit1" type="Label" parent="Player"]
+[node name="NameInputWindow" type="Panel" parent="Player"]
 visible = false
-margin_left = 240.0
-margin_top = 128.0
-margin_right = 339.0
-margin_bottom = 176.0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
-custom_styles/normal = SubResource( 8 )
-text = "Press "
+margin_left = -96.0
+margin_right = 1128.0
+margin_bottom = 656.0
 
-[node name="Quit2" type="Label" parent="Player"]
-visible = false
-margin_left = 224.0
-margin_top = 320.0
-margin_right = 361.0
-margin_bottom = 368.0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
-custom_styles/normal = SubResource( 9 )
-text = "to start."
+[node name="NameInput" type="LineEdit" parent="Player/NameInputWindow"]
+margin_left = 72.0
+margin_top = 200.0
+margin_right = 784.0
+margin_bottom = 263.0
+custom_fonts/font = ExtResource( 1 )
+align = 1
+max_length = 32
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+placeholder_text = "Input your name here"
+placeholder_alpha = 0.2
+caret_blink = true
+caret_blink_speed = 0.4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
-anims/default = SubResource( 4 )
+[node name="Button" type="Button" parent="Player/NameInputWindow"]
+margin_left = 328.0
+margin_top = 360.0
+margin_right = 473.0
+margin_bottom = 419.0
+custom_fonts/font = ExtResource( 1 )
+button_mask = 0
+text = "Ready !"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+autoplay = "Binking"
+anims/Binking = SubResource( 8 )
+
+[connection signal="text_changed" from="Player/NameInputWindow/NameInput" to="Player" method="_on_NameInput_text_changed"]
+[connection signal="pressed" from="Player/NameInputWindow/Button" to="Player" method="_on_Button_pressed"]

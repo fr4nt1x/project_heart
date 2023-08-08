@@ -1,25 +1,34 @@
 extends Node2D
-
-onready var arrows = $Arrows
-onready var ctrl = $Ctrl
-onready var shift = $Shift
-onready var quit1 = $Quit1
-onready var quit2 = $Quit2
+	
+onready var textGroupControls = $NodeKeyboard
+onready var nameInput = $NameInputWindow/NameInput
+onready var nameInputWindow = $NameInputWindow
+onready var startButton = $NameInputWindow/Button
+onready var game = get_node("/root/Main/Game")
 
 var can_quit=false
+
 func _ready():
 	pass
 
 func _process(_delta):
-	if can_quit and Input.is_action_just_pressed("shoot"):
-		var game = get_node("/root/Main/Game")
-		#without deferred call errors exist
-		game.call_deferred("next_level")
+	if Input.is_action_just_pressed("shoot"):
+		textGroupControls.visible = false
+		nameInputWindow.visible = true
+		nameInput.grab_focus()
 
-func allow_quit():
-	arrows.visible = false
-	ctrl.visible = false
-	shift.visible = false
-	quit1.visible = true
-	quit2.visible = true
-	can_quit = true
+func _on_Button_pressed():
+	game.player_name = nameInput.text
+	#without deferred call errors exist
+	game.call_deferred("next_level")
+
+func _on_NameInput_text_changed(text):
+	text = text.replace(game.highscoreSeparator,"_")
+	var cursor_position = nameInput.get_cursor_position()
+	nameInput.text = text
+	nameInput.set_cursor_position(cursor_position)
+	text = text.strip_edges()
+	if len(text)>0:
+		startButton.disabled = false
+	else:
+		startButton.disabled = true	

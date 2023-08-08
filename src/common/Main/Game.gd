@@ -9,6 +9,7 @@ onready var pause_menu = $InterfaceLayer/PauseMenu
 onready var speedrun_timer = $InterfaceLayer/SpeedrunTimer
 onready var _points_counter = $InterfaceLayer/CoinsCounter
 export var interlude_duration = 5
+const highscoreSeparator = "|"
 var player_name := "42"
 var pointsLevelArray := [0,0,0,0]
 var interludeScene = "res://src/common/Interlude.tscn"
@@ -38,6 +39,8 @@ func _init():
 	interlude_resource = load(interludeScene)
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_points_counter.visible=false
 	current_level_instance  = current_level_resource.instance()
 	self.add_child(current_level_instance)
@@ -107,7 +110,7 @@ func pause_pressed():
 func get_points_string():
 	var res:=""
 	for i in pointsLevelArray:
-		res = res + ",%04d" % [i]
+		res = res + highscoreSeparator + "%04d" % [i]
 	return res
 
 func end_game():
@@ -124,5 +127,5 @@ func end_game():
 
 	file.open(highscore_path, flag)
 	file.seek_end(0)
-	file.store_line(result_time + "," +player_name+ get_points_string())
+	file.store_line(result_time + highscoreSeparator +player_name+ get_points_string())
 	file.close()

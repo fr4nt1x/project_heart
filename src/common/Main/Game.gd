@@ -8,7 +8,10 @@ extends Node
 onready var pause_menu = $InterfaceLayer/PauseMenu
 onready var speedrun_timer = $InterfaceLayer/SpeedrunTimer
 onready var _points_counter = $InterfaceLayer/CoinsCounter
+onready var highscore = $InterfaceLayer/Highscore
 export var interlude_duration = 5
+export var highscore_timer = 5
+export var highscore_path = "user://highscores.dat"
 const highscoreSeparator = "|"
 var player_name := "42"
 var pointsLevelArray := [0,0,0,0]
@@ -44,6 +47,8 @@ func _ready():
 	_points_counter.visible=false
 	current_level_instance  = current_level_resource.instance()
 	self.add_child(current_level_instance)
+	# highscore.parse_highscore_array_times(self.load_highscores())
+	# highscore.show_highscore()
 	
 func _notification(what):
 	if what == NOTIFICATION_WM_QUIT_REQUEST:
@@ -114,7 +119,7 @@ func get_points_string():
 	return res
 
 func end_game():
-	var highscore_path = "user://highscores.dat"
+
 	pointsLevelArray[level_counter] = _points_counter.number_resets
 	var result_time = speedrun_timer.stop_timer()
 	var file := File.new()
@@ -129,3 +134,22 @@ func end_game():
 	file.seek_end(0)
 	file.store_line(result_time + highscoreSeparator +player_name+ get_points_string())
 	file.close()
+
+	yield(get_tree().create_timer(highscore_timer), "timeout")
+	highscore.parse_highscore_array_times(self.load_highscores())
+	highscore.show_highscore()
+	speedrun_timer.hide()
+	_points_counter.hide()
+
+func load_highscores():
+	var file := File.new()
+	var flag := File.READ
+	var err := file.open(highscore_path, flag)
+
+	var highscoreArray:=[]
+	if err !=OK:
+		print("Error during highscore open. File could not be opened.")
+	else:
+		while not file.eof_reached():
+			highscoreArray.append(file.get_csv_line(highscoreSeparator))
+	return highscoreArray

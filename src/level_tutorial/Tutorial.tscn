@@ -26,7 +26,7 @@ font_data = ExtResource( 2 )
 resource_name = "Binking"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("NodeKeyboard/StartText:self_modulate")
+tracks/0/path = NodePath("CanvasLayer/NodeKeyboard/StartText:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -39,26 +39,25 @@ tracks/0/keys = {
 }
 
 [node name="Tutorial" type="Node2D"]
-position = Vector2( 96, 0 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -96.0
-margin_right = 1128.0
-margin_bottom = 656.0
-color = Color( 0, 0, 0, 1 )
 
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
-[node name="NodeKeyboard" type="Control" parent="Player"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
 
-[node name="StartText" type="Label" parent="Player/NodeKeyboard"]
-self_modulate = Color( 0.143743, 0.143743, 0.143743, 1 )
-margin_left = 440.0
+[node name="NodeKeyboard" type="Control" parent="Player/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Player/CanvasLayer/NodeKeyboard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="StartText" type="Label" parent="Player/CanvasLayer/NodeKeyboard"]
+margin_left = 544.0
 margin_top = 192.0
-margin_right = 632.0
+margin_right = 736.0
 margin_bottom = 279.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
@@ -68,14 +67,14 @@ to start."
 align = 1
 valign = 1
 
-[node name="TextGroupControls" type="Control" parent="Player/NodeKeyboard"]
-margin_left = -72.0
-margin_top = 48.0
-margin_right = 544.0
-margin_bottom = 512.0
+[node name="TextGroupControls" type="Control" parent="Player/CanvasLayer/NodeKeyboard"]
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 632.0
+margin_bottom = 520.0
 rect_scale = Vector2( 0.7, 0.7 )
 
-[node name="Ctrl" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+[node name="Ctrl" type="Label" parent="Player/CanvasLayer/NodeKeyboard/TextGroupControls"]
 margin_left = 272.0
 margin_top = 232.0
 margin_right = 571.0
@@ -85,7 +84,7 @@ custom_fonts/font = SubResource( 2 )
 custom_styles/normal = SubResource( 5 )
 text = "Throw/Dash/Push"
 
-[node name="CtrlKey" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+[node name="CtrlKey" type="Label" parent="Player/CanvasLayer/NodeKeyboard/TextGroupControls"]
 margin_left = 80.0
 margin_top = 216.0
 margin_right = 168.0
@@ -97,7 +96,7 @@ text = "CTRL"
 align = 1
 valign = 1
 
-[node name="ArrowUp" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+[node name="ArrowUp" type="Label" parent="Player/CanvasLayer/NodeKeyboard/TextGroupControls"]
 margin_left = 96.0
 margin_top = 56.0
 margin_right = 144.0
@@ -109,7 +108,7 @@ text = "^"
 align = 1
 valign = 1
 
-[node name="ArrowDown" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+[node name="ArrowDown" type="Label" parent="Player/CanvasLayer/NodeKeyboard/TextGroupControls"]
 margin_left = 96.0
 margin_top = 128.0
 margin_right = 144.0
@@ -121,7 +120,7 @@ text = "v"
 align = 1
 valign = 1
 
-[node name="ArrowLeft" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+[node name="ArrowLeft" type="Label" parent="Player/CanvasLayer/NodeKeyboard/TextGroupControls"]
 margin_left = 24.0
 margin_top = 128.0
 margin_right = 72.0
@@ -133,7 +132,7 @@ text = "<"
 align = 1
 valign = 1
 
-[node name="ArrowRight" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+[node name="ArrowRight" type="Label" parent="Player/CanvasLayer/NodeKeyboard/TextGroupControls"]
 margin_left = 168.0
 margin_top = 128.0
 margin_right = 216.0
@@ -145,7 +144,7 @@ text = ">"
 align = 1
 valign = 1
 
-[node name="ShiftKey" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+[node name="ShiftKey" type="Label" parent="Player/CanvasLayer/NodeKeyboard/TextGroupControls"]
 margin_left = 40.0
 margin_top = 344.0
 margin_right = 224.0
@@ -157,7 +156,7 @@ text = "Shift"
 align = 1
 valign = 1
 
-[node name="Arrows" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+[node name="Arrows" type="Label" parent="Player/CanvasLayer/NodeKeyboard/TextGroupControls"]
 margin_left = 272.0
 margin_top = 112.0
 margin_right = 571.0
@@ -167,7 +166,7 @@ custom_fonts/font = SubResource( 1 )
 custom_styles/normal = SubResource( 6 )
 text = "Move"
 
-[node name="Shift" type="Label" parent="Player/NodeKeyboard/TextGroupControls"]
+[node name="Shift" type="Label" parent="Player/CanvasLayer/NodeKeyboard/TextGroupControls"]
 margin_left = 272.0
 margin_top = 320.0
 margin_right = 580.0
@@ -179,17 +178,17 @@ text = "         Rotate
 	       only used 
   during Chaper III"
 
-[node name="NameInputWindow" type="Panel" parent="Player"]
+[node name="NameInputWindow" type="Panel" parent="Player/CanvasLayer"]
 visible = false
 margin_left = -96.0
 margin_right = 1128.0
 margin_bottom = 656.0
 
-[node name="NameInput" type="LineEdit" parent="Player/NameInputWindow"]
-margin_left = 72.0
-margin_top = 200.0
-margin_right = 784.0
-margin_bottom = 263.0
+[node name="NameInput" type="LineEdit" parent="Player/CanvasLayer/NameInputWindow"]
+margin_left = 144.0
+margin_top = 168.0
+margin_right = 856.0
+margin_bottom = 231.0
 custom_fonts/font = ExtResource( 1 )
 align = 1
 max_length = 32
@@ -202,11 +201,11 @@ placeholder_alpha = 0.2
 caret_blink = true
 caret_blink_speed = 0.4
 
-[node name="Button" type="Button" parent="Player/NameInputWindow"]
-margin_left = 328.0
-margin_top = 360.0
-margin_right = 473.0
-margin_bottom = 419.0
+[node name="Button" type="Button" parent="Player/CanvasLayer/NameInputWindow"]
+margin_left = 416.0
+margin_top = 320.0
+margin_right = 584.0
+margin_bottom = 379.0
 custom_fonts/font = ExtResource( 1 )
 button_mask = 0
 text = "Ready !"
@@ -215,5 +214,5 @@ text = "Ready !"
 autoplay = "Binking"
 anims/Binking = SubResource( 8 )
 
-[connection signal="text_changed" from="Player/NameInputWindow/NameInput" to="Player" method="_on_NameInput_text_changed"]
-[connection signal="pressed" from="Player/NameInputWindow/Button" to="Player" method="_on_Button_pressed"]
+[connection signal="text_changed" from="Player/CanvasLayer/NameInputWindow/NameInput" to="Player" method="_on_NameInput_text_changed"]
+[connection signal="pressed" from="Player/CanvasLayer/NameInputWindow/Button" to="Player" method="_on_Button_pressed"]

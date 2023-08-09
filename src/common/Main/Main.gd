@@ -11,6 +11,7 @@ func _ready():
 	game_instance  = game_resource.instance()
 	self.add_child(game_instance)
 	game_instance.pause_menu.connect("new_game",self,"new_game")
+	game_instance.highscore.connect("new_game",self,"new_game")
 
 func new_game():
 	self.remove_child(game_instance)
@@ -18,4 +19,5 @@ func new_game():
 	game_instance  = game_resource.instance()
 	self.add_child(game_instance)
 	game_instance.pause_menu.connect("new_game",self,"new_game")
+	game_instance.highscore.connect("new_game",self,"new_game")
 

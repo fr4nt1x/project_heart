@@ -1,9 +1,9 @@
 extends Node2D
 	
-onready var textGroupControls = $NodeKeyboard
-onready var nameInput = $NameInputWindow/NameInput
-onready var nameInputWindow = $NameInputWindow
-onready var startButton = $NameInputWindow/Button
+onready var textGroupControls = $CanvasLayer/NodeKeyboard
+onready var nameInput = $CanvasLayer/NameInputWindow/NameInput
+onready var nameInputWindow = $CanvasLayer/NameInputWindow
+onready var startButton = $CanvasLayer/NameInputWindow/Button
 onready var game = get_node("/root/Main/Game")
 
 var can_quit=false

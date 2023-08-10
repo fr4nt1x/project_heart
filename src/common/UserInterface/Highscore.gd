@@ -10,7 +10,12 @@ onready var vbox_container_dashes := $ColorRect/ScrollContainer/CenterContainer/
 onready var vbox_container_deaths := $ColorRect/ScrollContainer/CenterContainer/HBoxContainer/VBoxContainerDeaths
 onready var vbox_container_space := $ColorRect/ScrollContainer/CenterContainer/HBoxContainer/VBoxContainerSpace
 onready var hbox_container := $ColorRect/ScrollContainer/CenterContainer/HBoxContainer
-onready var name_label := $ColorRect/ScrollContainer/CenterContainer/HBoxContainer/VBoxContainerName/Label
+onready var color_rect_label := $ColorRect/ScrollContainer/CenterContainer/HBoxContainer/VBoxContainerName/Label
+
+var fastest_time := "59:59:59"
+var most_dashes := 0
+var least_deaths := 9999
+var most_space := 0
 
 func _ready():
 	hide()
@@ -37,34 +42,52 @@ func compare_array_time(score1,score2):
 func preprocess_highscore_array(highscore_array):
 	var highscore_array_shortened = []
 	for h in highscore_array:
-		print(h)
 		if len(h) != number_of_columns:
 			continue
+		if h[0] < fastest_time:
+			fastest_time = h[0]
+		if int(h[3]) > most_dashes:
+			most_dashes = int(h[3])
+		if int(h[4]) < least_deaths:
+			least_deaths = int(h[4])
+		if int(h[5]) > most_space:
+			most_space = int(h[5])
+
 		highscore_array_shortened.append(h)
-	
-	highscore_array_shortened.sort_custom(self,"compare_array_time")
+	highscore_array_shortened.invert()
 	return highscore_array_shortened
 
 func parse_highscore_array_times(highscore_array):
 	for h in preprocess_highscore_array(highscore_array):
 		
-		var newLabel := name_label.duplicate()
+		var newLabel := color_rect_label.duplicate()
 		newLabel.text = h[1]
 		vbox_container_name.add_child(newLabel)
 
-		newLabel = name_label.duplicate()
+# TIME
+		newLabel = color_rect_label.duplicate()
 		newLabel.text = h[0]
-		vbox_container_time.add_child(newLabel)
 
-		newLabel = name_label.duplicate()
+		if h[0] == fastest_time:
+			newLabel.get_child(0).show()
+
+		vbox_container_time.add_child(newLabel)
+# DASHES
+		newLabel = color_rect_label.duplicate()
+		if int(h[3]) == most_dashes:
+			newLabel.get_child(0).show()
 		newLabel.text = h[3]
 		vbox_container_dashes.add_child(newLabel)
-
-		newLabel = name_label.duplicate()
+# DEATHS
+		newLabel = color_rect_label.duplicate()
+		if int(h[4]) == least_deaths:
+			newLabel.get_child(0).show()
 		newLabel.text = h[4]
 		vbox_container_deaths.add_child(newLabel)
-
-		newLabel = name_label.duplicate()
+# SPACES
+		newLabel = color_rect_label.duplicate()
+		if int(h[5]) == most_space:
+			newLabel.get_child(0).show()
 		newLabel.text = h[5]
 		vbox_container_space.add_child(newLabel)
 

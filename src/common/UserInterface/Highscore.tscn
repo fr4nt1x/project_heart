@@ -57,6 +57,13 @@ rect_min_size = Vector2( 0, 64 )
 custom_fonts/font = ExtResource( 4 )
 text = "Name"
 
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ScrollContainer/CenterContainer/HBoxContainer/VBoxContainerName/Label"]
+visible = false
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.709804, 0.0745098, 0.356863 )
+
 [node name="VBoxContainerTime" type="VBoxContainer" parent="ColorRect/ScrollContainer/CenterContainer/HBoxContainer"]
 margin_left = 193.0
 margin_right = 300.0
